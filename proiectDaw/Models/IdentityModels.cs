@@ -25,7 +25,12 @@ namespace proiectDaw.Models
         {
         }
 
-        public static ApplicationDbContext Create()
+		public DbSet<Pictures> Pictures { get; set; }
+		public DbSet<Albums> Albums { get; set; }
+		public DbSet<Categories> Categories { get; set; }
+		public DbSet<Comments> Comments { get; set; }
+
+		public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }

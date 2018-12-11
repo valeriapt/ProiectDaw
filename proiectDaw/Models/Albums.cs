@@ -6,17 +6,15 @@ using System.Web;
 
 namespace proiectDaw.Models
 {
-	public class Comments
+	public class Albums
 	{
 		[Key]
 		public int Id { get; set; }
-		public int PictureID { get; set; }
 		[Required]
-		public string Text { get; set; }
+		public string Name { get; set; }
+
 		public int CreatedBy { get; set; }
-		public DateTime CreatedAt { get; set; }
+		public virtual ICollection<Pictures> Pictures{ get; set; }
 		public virtual ApplicationUser User { get; set; }
-
 	}
-
 }
