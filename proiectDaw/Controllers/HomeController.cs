@@ -13,7 +13,7 @@ namespace proiectDaw.Controllers
 		public ActionResult Index()
 		{
 			var pictures = from pic in db.Pictures orderby pic.Date descending select pic;
-			ViewBag.Pictures = pictures;
+            ViewBag.Pictures = pictures;
 			return View();
 			
 		}

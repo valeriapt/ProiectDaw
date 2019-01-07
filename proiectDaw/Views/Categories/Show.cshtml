@@ -1,7 +1,7 @@
 ﻿@model proiectDaw.Models.Categories
 
 @{
-	ViewBag.Title = "Afisare categorie";
+    ViewBag.Title = "Afisare categorie";
 }
 
 <h2>@ViewBag.Title</h2>
@@ -11,36 +11,18 @@
 <a class="btn btn-sm btn-info" href="/Categories/Edit/@Model.Id">Modifica categoria</a>
 <br /><br />
 <form method="post" action="/Categories/Delete/@Model.Id">
-	@Html.HttpMethodOverride(HttpVerbs.Delete)
-	<button class="btn btn-sm btn-danger" type="submit">Sterge categoria</button>
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+    <button class="btn btn-sm btn-danger" type="submit">Sterge categoria</button>
 </form>
 
+<div class="row">
 
-@foreach (var item in ViewBag.Pictures)
-{
-	<tr>
-		<td>
-			@item.UserId
-		</td>
-		<td>
-			@item.CategoryId
-		</td>
-		<td>
-			@item.Description
-		</td>
-		<td>
-			@item.AlbumId
-		</td>
-		<td>
-			@item.Date
-		</td>
-		<td>
-			<img src="@Url.Content(item.ImagePath)" width=" 250" height="250" />
-		</td>
+    @foreach (proiectDaw.Models.Pictures item in ViewBag.Pictures)
+    {
+        @Html.Partial("PhotoThumbnail", item);
+    }
 
-	</tr>
-
-}
+</div>
 
 
 

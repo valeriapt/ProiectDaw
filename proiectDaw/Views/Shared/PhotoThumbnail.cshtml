@@ -1,0 +1,16 @@
+﻿
+<div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+        <img src="@Url.Content(@Model.ImagePath)">
+        <div class="caption">
+            <h3>@Model.Name</h3>
+            <p>@Model.Description</p>
+            <p class="navbar-text navbar-right">@Model.UserId</p>
+            <p class="navbar-text navbar-right">@Model.AlbumId</p>
+            <p class="navbar-text navbar-right">@Model.Date</p>
+            <p><a href="#" class="btn btn-primary" role="button">@Model.CategoryId</a></p>
+        </div>
+    </div>
+</div>
+
+<!--TODO: 'Model.CategoryId' dupa ce este facuta relatia 'o poza apartine unei categorii' -->

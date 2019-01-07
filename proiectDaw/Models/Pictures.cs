@@ -27,5 +27,7 @@ namespace proiectDaw.Models
 
 		public virtual ApplicationUser User { get; set; }
 		public virtual ICollection<Comments> Comments { get; set; }
+
+        //TODO: adaugare relatia "o poza apartine unei categorii"
 	}
 }

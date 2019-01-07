@@ -1,34 +1,16 @@
 ﻿@model proiectDaw.Models.Pictures
 
 @{
-	ViewBag.Title = "Index";
+    ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
 
+<div class="row">
 
-	@foreach (var item in ViewBag.Pictures)
-	{
-<tr>
-	<td>
-		@item.UserId
-	</td>
-	<td>
-		@item.CategoryId
-	</td>
-	<td>
-		@item.Description
-	</td>
-	<td>
-		@item.AlbumId
-	</td>
-	<td>
-		@item.Date
-	</td>
-	<td>
-		<img src="@Url.Content(item.ImagePath)" width=" 250" height="250" />
-	</td>
-	
-</tr>
-	
-}
+    @foreach (proiectDaw.Models.Pictures item in ViewBag.Pictures)
+    {
+        @Html.Partial("PhotoThumbnail", item);
+     }
+        
+</div>
