@@ -1,0 +1,17 @@
+﻿@model proiectDaw.Models.Categories
+@{
+	ViewBag.Title = "Editare categorie";
+}
+
+<h2>@ViewBag.Title</h2>
+<form method="post" action="/Categories/Edit/@Model.Id">
+	@Html.HttpMethodOverride(HttpVerbs.Put)
+	<br />
+	@Html.Label("Name", "Denumire categorie")
+	<br />
+	@Html.EditorFor(m => m.Name)
+	@Html.ValidationMessageFor(model => model.Name, null, new { @class = "text-danger " })
+	<br />
+	<button class="btn btn-sm btn-success" type="submit">Modifica aceasta categorie</button>
+</form>
+

@@ -1,0 +1,21 @@
+﻿
+@{
+	ViewBag.Title = "Categories";
+}
+
+<h2>@ViewBag.Title</h2>
+@if (TempData.ContainsKey("message"))
+{
+	<h3 class="alert alert-info" role="alert">@ViewBag.message</h3>
+}
+@foreach (var category in ViewBag.Categories)
+{
+	<p>@category.Name</p>
+	<a class="btn btn-sm btn-success"
+	   href="/Categories/Show/@category.Id">Afisare categorie</a>
+	<br />
+	<hr />
+	<br />
+}
+<a class="btn btn-sm btn-success" href="/Categories/New">Adauga categorie</a>
+<br />
