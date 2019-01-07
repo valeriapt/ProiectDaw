@@ -1,4 +1,5 @@
-﻿using System;
+﻿using proiectDaw.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,13 @@ namespace proiectDaw.Controllers
 {
 	public class HomeController : Controller
 	{
+		private ApplicationDbContext db = new ApplicationDbContext();
 		public ActionResult Index()
 		{
+			var pictures = from pic in db.Pictures orderby pic.Date descending select pic;
+			ViewBag.Pictures = pictures;
 			return View();
+			
 		}
 
 		public ActionResult About()
