@@ -12,6 +12,7 @@ namespace proiectDaw.Models
 		public int Id { get; set; }
 		[Required]
 		public string Name { get; set; }
+		public string UserId { get; set; }
 
 		public int CreatedBy { get; set; }
 		public virtual ICollection<Pictures> Pictures{ get; set; }

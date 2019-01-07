@@ -18,7 +18,7 @@ namespace proiectDaw.Models
 		public string ImagePath { get; set; }
 		[NotMapped]
 		public HttpPostedFileBase ImageFile { get; set; }
-		public int UserId { get; set; }
+		public string UserId { get; set; }
 		[Required]
 		public int CategoryId { get; set; }
 		public string Description { get; set; }

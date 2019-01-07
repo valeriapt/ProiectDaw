@@ -1,13 +1,125 @@
-﻿@using proiectDaw.Models
+﻿@model proiectDaw.Models.Profile
+
 @{
-    ViewBag.Title = "Index";
+	ViewBag.Title = "Show profile";
 }
 
-<h2></h2>
+<h2>@ViewBag.Profile.Username</h2>
 
-<body>
-    <h1> @</h1>
-    <p>
-        <h3>@Model.Email</h3>
-    </p>
-</body>
+<div>
+	<img src="@Url.Content(ViewBag.Profile.ImagePath)" width=" 250" height="250" />
+</div>
+
+
+
+<div>
+	<h4>About me</h4>
+	<hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@ViewBag.Profile.LastName
+		</dt>
+		<dd>
+			@ViewBag.Profile.LastName
+		</dd>
+		<dt>
+			@ViewBag.Profile.FirstName
+		</dt>
+		<dd>
+			@ViewBag.Profile.FirstName
+		</dd>
+		<dt>
+			@ViewBag.Profile.Age
+		</dt>
+		<dd>
+			@ViewBag.Profile.Age
+		</dd>
+	</dl>
+</div>
+
+
+<br />
+<a class="btn btn-sm btn-info" href="/Profile/Edit/@ViewBag.Profile.Id"> Edit profile </a>
+<br /><br />
+
+
+<div>
+	<h4>Pictures</h4>
+	<hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.Name)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Name)
+		</dd>
+
+		<dt>
+
+		</dt>
+
+		<dd>
+			<img src="@Url.Content(Model.ImagePath)" width=" 250" height="250" />
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.UserId)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.UserId)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.CategoryId)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.CategoryId)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Description)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Description)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.AlbumId)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.AlbumId)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Date)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Date)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.User.Email)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.User.Email)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.User.Id)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.User.Id)
+		</dd>
+
+	</dl>
+</div>
+<p>
+	@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+	@Html.ActionLink("Back to List", "Index")
+</p>

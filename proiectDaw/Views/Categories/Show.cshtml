@@ -15,6 +15,35 @@
 	<button class="btn btn-sm btn-danger" type="submit">Sterge categoria</button>
 </form>
 
+
+@foreach (var item in ViewBag.Pictures)
+{
+	<tr>
+		<td>
+			@item.UserId
+		</td>
+		<td>
+			@item.CategoryId
+		</td>
+		<td>
+			@item.Description
+		</td>
+		<td>
+			@item.AlbumId
+		</td>
+		<td>
+			@item.Date
+		</td>
+		<td>
+			<img src="@Url.Content(item.ImagePath)" width=" 250" height="250" />
+		</td>
+
+	</tr>
+
+}
+
+
+
 <hr />
 <a class="btn btn-sm btn-success" href="/Article/Index">Inapoi la articole</a>
 <br /><br />

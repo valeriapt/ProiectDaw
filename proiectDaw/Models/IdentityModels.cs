@@ -29,6 +29,7 @@ namespace proiectDaw.Models
 		public DbSet<Albums> Albums { get; set; }
 		public DbSet<Categories> Categories { get; set; }
 		public DbSet<Comments> Comments { get; set; }
+		public DbSet<Profile> Profiles { get; set; }
 
 		public static ApplicationDbContext Create()
         {

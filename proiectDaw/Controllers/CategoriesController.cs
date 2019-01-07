@@ -46,8 +46,10 @@ namespace proiectDaw.Controllers
 		{
 			Categories category = db.Categories.Find(id);
 			ViewBag.Category = category;
-
+			var pics = from pic in db.Pictures where pic.CategoryId == id orderby pic.Date descending select pic;
+			ViewBag.Pictures = pics;
 			return View(category);
+			//return View();
 		}
 		//TODO: admin only 
 		public ActionResult Edit(int id)

@@ -9,64 +9,78 @@
 <div>
     <h4>Pictures</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.Name)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Name)
+		</dd>
 
-        <dt>
-           
-        </dt>
+		<dt>
 
-        <dd>
+		</dt>
+
+		<dd>
 			<img src="@Url.Content(Model.ImagePath)" width=" 250" height="250" />
-        </dd>
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UserId)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.UserId)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserId)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.UserId)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryId)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.CategoryId)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CategoryId)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.CategoryId)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Description)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Description)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AlbumId)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.AlbumId)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AlbumId)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.AlbumId)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Date)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Date)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.User.Email)
+		</dt>
 
-    </dl>
+		<dd>
+			@Html.DisplayFor(model => model.User.Email)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.User.Id)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.User.Id)
+		</dd>
+
+	</dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
