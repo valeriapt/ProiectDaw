@@ -1,0 +1,29 @@
+﻿@model proiectDaw.Models.Albums
+
+@{
+	ViewBag.Title = "Afisare albume";
+}
+
+<h2>@ViewBag.Title</h2>
+<h1>@ViewBag.Album.Name</h1>
+<br />
+
+<a class="btn btn-sm btn-info" href="/Album/Edit/@ViewBag.Album.Id">Modifica albumul</a>
+<br /><br />
+<form method="post" action="/Album/Delete/@ViewBag.Album.Id">
+	@Html.HttpMethodOverride(HttpVerbs.Delete)
+	<button class="btn btn-sm btn-danger" type="submit">Sterge albumul</button>
+</form>
+
+<div class="row">
+
+	@foreach (proiectDaw.Models.Pictures item in ViewBag.Pictures)
+	{
+		@Html.Partial("PhotoThumbnail", item);
+	}
+
+</div>
+
+
+
+

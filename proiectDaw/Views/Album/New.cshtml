@@ -1,0 +1,17 @@
+﻿@model proiectDaw.Models.Albums
+@{
+	ViewBag.Title = "Add album";
+}
+<h2>@ViewBag.Title</h2>
+<form method="post" action="/Album/New">
+	@Html.Label("Name", "Denumire album")
+	<br />
+	@Html.TextBox("Name", null, new { @class = "form-control" })
+	@Html.ValidationMessageFor(model => model.Name, null, new {
+	@class = "text-danger " })
+	<br /><br />
+	<button class="btn btn-sm btn-success" type="submit">
+		Adauga
+		Album
+	</button>
+</form>
