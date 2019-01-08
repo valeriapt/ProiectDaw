@@ -12,7 +12,7 @@ namespace proiectDaw.Controllers
 		private ApplicationDbContext db = new ApplicationDbContext();
 		public ActionResult Index()
 		{
-			var pictures = from pic in db.Pictures orderby pic.Date descending select pic;
+            var pictures = db.Pictures.Include("Category").Include("Album").OrderByDescending(p => p.Date);//from pic in db.Pictures orderby pic.Date descending select pic;
             ViewBag.Pictures = pictures;
 			return View();
 			

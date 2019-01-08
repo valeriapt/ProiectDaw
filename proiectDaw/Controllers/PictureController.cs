@@ -15,10 +15,56 @@ namespace proiectDaw.Controllers
 		[HttpGet]
 		public ActionResult Add()
 		{
-			return View();
+            Pictures picture = new Pictures();
+            // preluam lista de categorii din metoda GetAllCategories()
+            picture.Categories = GetAllCategories();
+            picture.Albums = GetAllAlbums();
+            return View(picture);
 		}
 
-		[HttpPost]
+        [NonAction]
+        public IEnumerable<SelectListItem> GetAllCategories()
+        {
+            // generam o lista goala
+            var selectList = new List<SelectListItem>();
+            // Extragem toate categoriile din baza de date
+            var categories = from cat in db.Categories select cat;
+            // iteram prin categorii
+            foreach (var category in categories)
+            {
+                // Adaugam in lista elementele necesare pentru dropdown
+                selectList.Add(new SelectListItem
+                {
+                    Value = category.Id.ToString(),
+                    Text = category.Name.ToString()
+                });
+            }
+            // returnam lista de categorii
+            return selectList;
+        }
+
+        [NonAction]
+        public IEnumerable<SelectListItem> GetAllAlbums()
+        {
+            // generam o lista goala
+            var selectList = new List<SelectListItem>();
+            // Extragem toate categoriile din baza de date
+            var albums = from albm in db.Albums select albm;
+            // iteram prin categorii
+            foreach (var album in albums)
+            {
+                // Adaugam in lista elementele necesare pentru dropdown
+                selectList.Add(new SelectListItem
+                {
+                    Value = album.Id.ToString(),
+                    Text = album.Name.ToString()
+                });
+            }
+            // returnam lista de categorii
+            return selectList;
+        }
+
+        [HttpPost]
 		public ActionResult Add(Pictures PicModel)
 		{
 			string fileName = Path.GetFileNameWithoutExtension(PicModel.ImageFile.FileName);
@@ -27,28 +73,34 @@ namespace proiectDaw.Controllers
 			PicModel.ImagePath = "~/Image/" + fileName;
 			fileName = Path.Combine(Server.MapPath("~/Image/"),fileName);
 			PicModel.ImageFile.SaveAs(fileName);
-			using (ApplicationDbContext db = new ApplicationDbContext())
-			{
-				db.Pictures.Add(PicModel);
-				db.SaveChanges();
-			}
-			ModelState.Clear();
-				return View();
-
+            PicModel.Categories = GetAllCategories();
+            PicModel.Albums = GetAllAlbums();
+            using (ApplicationDbContext db = new ApplicationDbContext())
+                    {
+                        db.Pictures.Add(PicModel);
+                        db.SaveChanges();
+                    }
+                    ModelState.Clear();
+            return View(PicModel);
 		}
 
 		[HttpGet]
 		public ActionResult Show(int id)
 		{
 			Pictures picModel = db.Pictures.Find(id);
-			/*
+
+            //new
+            ViewBag.Picture = picModel;
+            ViewBag.Category = picModel.Categories;
+            ViewBag.Album = picModel.Albums;
+            /*
 			using (ApplicationDbContext db = new ApplicationDbContext())
 			{
 				picModel = db.Pictures.Where(x => x.Id == id).FirstOrDefault();
 
 			}*/
 
-				return View(picModel);
+            return View(picModel);
 		}
 
 		/*

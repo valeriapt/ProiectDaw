@@ -10,7 +10,6 @@ namespace proiectDaw.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "proiectDaw.Models.ApplicationDbContext";
         }
 
         protected override void Seed(proiectDaw.Models.ApplicationDbContext context)

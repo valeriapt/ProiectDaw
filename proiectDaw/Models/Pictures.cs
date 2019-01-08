@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace proiectDaw.Models
 {
@@ -27,8 +28,12 @@ namespace proiectDaw.Models
 
 		public virtual ApplicationUser User { get; set; }
 		public virtual ICollection<Comments> Comments { get; set; }
+        public virtual Categories Category { get; set; }
+        public virtual Albums Album { get; set; }
 
-
+        //new
+        public IEnumerable<SelectListItem> Categories { get; set; }
+        public IEnumerable<SelectListItem> Albums { get; set; }
         //TODO: adaugare relatia "o poza apartine unei categorii"
-	}
+    }
 }

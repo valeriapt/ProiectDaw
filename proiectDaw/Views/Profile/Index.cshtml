@@ -1,32 +1,68 @@
 ﻿@model proiectDaw.Models.Profile
 
 @{
-	ViewBag.Title = "Show profile";
+    ViewBag.Title = "Show profile";
 }
 
+
+<h2>@ViewBag.Profile.Username</h2>
+
+<div>
+    <img src="@Url.Content(ViewBag.Profile.ImagePath)" width=" 250" height="250" />
+</div>
+
+
+
+<div>
+    <h4>About me</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @ViewBag.Profile.LastName
+        </dt>
+        <dd>
+            @ViewBag.Profile.LastName
+        </dd>
+        <dt>
+            @ViewBag.Profile.FirstName
+        </dt>
+        <dd>
+            @ViewBag.Profile.FirstName
+        </dd>
+        <dt>
+            @ViewBag.Profile.Age
+        </dt>
+        <dd>
+            @ViewBag.Profile.Age
+        </dd>
+    </dl>
+</div>
+
+
+<br />
+<a class="btn btn-sm btn-info" href="/Profile/Edit/@ViewBag.Profile.Id"> Edit profile </a>
+<br /><br />
+
+
 <h3>Albums</h3>
+
+
 <div>
 
 
-	@foreach (proiectDaw.Models.Albums item in ViewBag.Albums)
-	{
-		// merge doar ca nu am facut controllerul la albume si nu are ce sa arata ( tabela e goala)
-		@Html.Label(item.Name);
-		@:<div class="row">
+    @foreach (proiectDaw.Models.Albums item in ViewBag.Albums)
+    {
+        // merge doar ca nu am facut controllerul la albume si nu are ce sa arata ( tabela e goala)
+        <div class="row">
 
-			foreach (proiectDaw.Models.Pictures pic in ViewBag.Pictures)
-		{
-		    	<!--  aici ar trebui puse poze-->
-			if (pic.AlbumId == item.Id)
-			{
-				Html.Partial("PhotoThumbnail", pic);
-			}
+            @foreach (proiectDaw.Models.Pictures pic in item.Pictures)
+            {
+                <!--  aici ar trebui puse poze-->
 
-		}
-	}
-	@{ 
-	  @:</div>
-	}
+                @Html.Partial("PhotoThumbnail", pic);
 
-	</dl>
+            }
+        </div>
+    }
+
 </div>
