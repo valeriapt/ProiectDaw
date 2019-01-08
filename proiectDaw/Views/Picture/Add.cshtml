@@ -30,16 +30,17 @@
 			</div>
 		</div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <!--<div class="form-group">
+            Html.HiddenFor(model => model.UserId, htmlAttributes: new { class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                Html.EditorFor(model => model.UserId, new { htmlAttributes = new { class = "form-control" } })
+                Html.ValidationMessageFor(model => model.UserId, "", new { class = "text-danger" })
             </div>
-        </div>
+        </div>-->
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <!--Html.LabelFor(model => model.CategoryId, htmlAttributes: new { class = "control-label col-md-2" }) -->
+            <label class="control-label col-md-2">Categorie</label>
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.CategoryId, new SelectList(Model.Categories, "Value", "Text"), "Selectati categoria", new { @class = "form-control" })
                 <!--Html.EditorFor(model => model.CategoryId, new { htmlAttributes = new {class = "form-control" } })-->
@@ -58,7 +59,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AlbumId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <!--Html.LabelFor(model => model.AlbumId, htmlAttributes: new { class = "control-label col-md-2" }) -->
+            <label class="control-label col-md-2">Album</label>
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.AlbumId, new SelectList(Model.Albums, "Value", "Text"), "Selectati albumul", new { @class = "form-control" })
                 <!--Html.EditorFor(model => model.AlbumId, new { htmlAttributes = new { class = "form-control" } })-->

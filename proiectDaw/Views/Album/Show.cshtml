@@ -5,12 +5,13 @@
 }
 
 <h2>@ViewBag.Title</h2>
-<h1>@ViewBag.Album.Name</h1>
+<h1>@Model.Name</h1>
+<small><i>Created by: @Model.CreatedBy</i></small>
 <br />
 
-<a class="btn btn-sm btn-info" href="/Album/Edit/@ViewBag.Album.Id">Modifica albumul</a>
+<a class="btn btn-sm btn-info" href="/Album/Edit/@Model.Id">Modifica albumul</a>
 <br /><br />
-<form method="post" action="/Album/Delete/@ViewBag.Album.Id">
+<form method="post" action="/Album/Delete/@Model.Id">
 	@Html.HttpMethodOverride(HttpVerbs.Delete)
 	<button class="btn btn-sm btn-danger" type="submit">Sterge albumul</button>
 </form>

@@ -34,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -188,6 +189,14 @@
     <Compile Include="Migrations\201901081324277_PictureMigration.Designer.cs">
       <DependentUpon>201901081324277_PictureMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901082004428_ProfileMigration.cs" />
+    <Compile Include="Migrations\201901082004428_ProfileMigration.Designer.cs">
+      <DependentUpon>201901082004428_ProfileMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901082156097_CreatedByToStringMigration.cs" />
+    <Compile Include="Migrations\201901082156097_CreatedByToStringMigration.Designer.cs">
+      <DependentUpon>201901082156097_CreatedByToStringMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Albums.cs" />
@@ -291,6 +300,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201901081324277_PictureMigration.resx">
       <DependentUpon>201901081324277_PictureMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901082004428_ProfileMigration.resx">
+      <DependentUpon>201901082004428_ProfileMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901082156097_CreatedByToStringMigration.resx">
+      <DependentUpon>201901082156097_CreatedByToStringMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

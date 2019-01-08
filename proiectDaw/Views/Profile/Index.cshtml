@@ -4,43 +4,42 @@
     ViewBag.Title = "Show profile";
 }
 
+<h2>@Model.Username 's profile</h2>
 
-<h2>@ViewBag.Profile.Username</h2>
+<div class="row">
+    <div class="col-md-4">
+        <img src="@Url.Content(Model.ProfileImagePath)" width=" 250" height="250" />
+    </div>
 
-<div>
-    <img src="@Url.Content(ViewBag.Profile.ImagePath)" width=" 250" height="250" />
+    <div class=" col-md-4">
+        <h4>About me</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Last name:
+            </dt>
+            <dd>
+                @Model.LastName
+            </dd>
+            <dt>
+                First name:
+            </dt>
+            <dd>
+                @Model.FirstName
+            </dd>
+            <dt>
+                Age:
+            </dt>
+            <dd>
+                @Model.Age
+            </dd>
+
+        </dl>
+    </div>
 </div>
-
-
-
-<div>
-    <h4>About me</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @ViewBag.Profile.LastName
-        </dt>
-        <dd>
-            @ViewBag.Profile.LastName
-        </dd>
-        <dt>
-            @ViewBag.Profile.FirstName
-        </dt>
-        <dd>
-            @ViewBag.Profile.FirstName
-        </dd>
-        <dt>
-            @ViewBag.Profile.Age
-        </dt>
-        <dd>
-            @ViewBag.Profile.Age
-        </dd>
-    </dl>
-</div>
-
 
 <br />
-<a class="btn btn-sm btn-info" href="/Profile/Edit/@ViewBag.Profile.Id"> Edit profile </a>
+<a class="btn btn-sm btn-info" href="/Profile/Edit/@Model.Id"> Edit profile </a>
 <br /><br />
 
 
@@ -48,11 +47,11 @@
 
 
 <div>
-
-
+    Nume: @ViewBag.nume
     @foreach (proiectDaw.Models.Albums item in ViewBag.Albums)
     {
         // merge doar ca nu am facut controllerul la albume si nu are ce sa arata ( tabela e goala)
+        @item.Pictures.Count
         <div class="row">
 
             @foreach (proiectDaw.Models.Pictures pic in item.Pictures)

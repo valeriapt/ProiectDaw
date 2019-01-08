@@ -2,6 +2,7 @@
 using proiectDaw.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -22,7 +23,11 @@ namespace proiectDaw.Controllers
 		public ActionResult New(Albums album)
 		{
 			try
-			{   album.UserId = User.Identity.GetUserId();
+			{
+                string userid = User.Identity.GetUserId();
+                album.UserId = userid;
+                Profile user = db.Profiles.Where(u => u.UserId == userid).First();
+                album.CreatedBy = user.Username;
 				db.Albums.Add(album);  // TODO:
 				db.SaveChanges();
 				TempData["message"] = "Albumul a fost adaugat!";
@@ -39,11 +44,15 @@ namespace proiectDaw.Controllers
 			Albums album = db.Albums.Find(id);
 			ViewBag.Album = album;
 			// poate merge si cu aia din clasa
-			var pics = from pic in db.Pictures where pic.AlbumId == id orderby pic.Date descending select pic;
-			ViewBag.Pictures = pics;
+			//var pics = from pic in db.Pictures where pic.AlbumId == id orderby pic.Date descending select pic;
+            var pics = db.Pictures.Where(a => a.AlbumId == id).OrderByDescending(p => p.Date).Include("Album").Include("Category");
+            //var pics = db.Pictures.Include("Album").OrderByDescending(p => p.Date).ToList();
+            ViewBag.Pictures = pics;
 			return View(album);
 			//return View();
 		}
+
+
 		//TODO: admin only 
 		public ActionResult Edit(int id)
 		{

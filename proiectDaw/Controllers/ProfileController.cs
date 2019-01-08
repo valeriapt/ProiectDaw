@@ -22,7 +22,7 @@ namespace proiectDaw.Controllers
         {
             String userid = User.Identity.GetUserId();
 			//var profile = from profileUser in db.Profiles where profileUser.UserId == userid select profileUser;
-            var profile = db.Profiles.Where(p => p.UserId == userid);
+            
             if (!db.Profiles.Any(p => p.UserId == userid))
             {
                 Profile profileNew = new Profile
@@ -43,16 +43,19 @@ namespace proiectDaw.Controllers
 
                 //var pics = from pic in db.Pictures where pic.UserId == userid select pic;
 
-                var albums = db.Albums.Where(a => a.UserId == userid).Include(c => c.Pictures);
+                var albums = db.Albums.Where(a => a.UserId == userid).Include(c => c.Pictures).ToList();
+                Profile profile = db.Profiles.SingleOrDefault(p => p.UserId == userid);
+                //var profile = db.Profiles.Where(p => p.UserId == userid);
+                ViewBag.nume = albums.ElementAt(0).Id;
                 ViewBag.Albums = albums;
-                ViewBag.Profile = profile;
+                ViewBag.Profiles = profile;
                 /*
 				ViewBag.Albums = albums;
 				var pics = from pic in db.Pictures where pic.UserId == userid select pic;
 				ViewBag.Pictures = pics;
 				ViewBag.Profile = profile;
 				*/
-                return View();
+                return View(profile);
             }
 		}
 

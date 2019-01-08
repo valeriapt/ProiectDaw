@@ -1,4 +1,5 @@
-﻿using proiectDaw.Models;
+﻿using Microsoft.AspNet.Identity;
+using proiectDaw.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -75,6 +76,8 @@ namespace proiectDaw.Controllers
 			PicModel.ImageFile.SaveAs(fileName);
             PicModel.Categories = GetAllCategories();
             PicModel.Albums = GetAllAlbums();
+            string userid = User.Identity.GetUserId();
+            PicModel.UserId = userid;
             using (ApplicationDbContext db = new ApplicationDbContext())
                     {
                         db.Pictures.Add(PicModel);
