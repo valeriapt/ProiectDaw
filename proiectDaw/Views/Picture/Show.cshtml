@@ -58,19 +58,46 @@
 {
     <h3 class="alert alert-info" role="alert">@ViewBag.message</h3>
 }
-@ViewBag.Picture.Id
-@Model.Id
-    <form method="post" action="/Comments/New">
-        @Html.TextBox("Text", "")
-        <input type ="hidden" name ="photoId" id ="photoId" value=@Model.Id/>
-        <button class="btn btn-sm btn-success" type="submit">Add Comment</button>
-    </form>
+
+	<form method="post" action="/Comments/New">
+		@Html.TextBox("Text", "")
+		<span class="field-validation-valid text-danger"
+			  data-valmsg-for="Text"
+			  data-valmsg-replace="true">Comment text is required!!!
+		</span>
+		<input type="hidden" name="photoId" id="photoId" value=@Model.Id> </input>
+		<button class="btn btn-sm btn-success" type="submit">Add Comment</button>
+	</form>
 @foreach (proiectDaw.Models.Comments item in ViewBag.Comments)
 {
-    <div class="row">
-        @Html.Partial("CommentInfo", item)
+	<div class="row">
+		
 
-    </div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				@item.CreatedBy
+				<span class="label label-success"> @item.CreatedAt </span>
+				@if (item.userId == ViewBag.Userid || ViewBag.IsAdmin == true)
+				{
+
+					<form method="post" action="/Comments/Delete/@item.Id">
+						@Html.HttpMethodOverride(HttpVerbs.Delete)
+						<button class="btn btn-sm btn-danger" type="submit">Sterge comentariul</button>
+					</form>
+					<a class="btn btn-sm btn-info" href="/Comments/Edit/@item.Id">Modifica comentariul</a>
+				}
+			</div>
+
+			<div class="panel-body">
+				Continut articol: <strong>@item.Text</strong>
+				<br />
+
+				<br />
+			</div>
+		</div>
+		<br />
+
+	</div>
 }
 
 <!-- TODO: comments in the same page-->

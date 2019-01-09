@@ -13,6 +13,8 @@ namespace proiectDaw.Models
 		public int PictureID { get; set; }
 		[Required]
 		public string Text { get; set; }
+	
+		public string userId { get; set; }
 		public string CreatedBy { get; set; }
 		public DateTime CreatedAt { get; set; }
 

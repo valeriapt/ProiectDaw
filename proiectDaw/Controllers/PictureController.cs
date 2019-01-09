@@ -110,14 +110,24 @@ namespace proiectDaw.Controllers
 		}
 
 		[HttpGet]
+		[Authorize(Roles = "User,Editor, Administrator")]
 		public ActionResult Show(int id)
 		{
+			string userid = User.Identity.GetUserId();
 			Pictures picModel = db.Pictures.Find(id);
 			var comments = db.Comments.Where(a => a.PictureID == id).ToList();
-            ViewBag.Picture = picModel;
+			if (User.IsInRole("Administrator")) ViewBag.IsAdmin = true;
+			else ViewBag.IsAdmin = false;
+
+			ViewBag.Userid = userid;
+			ViewBag.Picture = picModel;
             ViewBag.Category = picModel.Categories;
             ViewBag.Album = picModel.Albums;
 			ViewBag.Comments = comments;
+			if (TempData.ContainsKey("message"))
+			{
+				ViewBag.message = TempData["message"].ToString();
+			}
             return View(picModel);
 		}
 

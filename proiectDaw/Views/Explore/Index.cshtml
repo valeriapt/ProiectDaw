@@ -1,0 +1,41 @@
+﻿
+@{
+	ViewBag.Title = "Explore";
+}
+
+<h2>Explore</h2>
+
+<form method="get" action="/Explore/Index">
+	<input class="form-control"
+		   id="Text"
+		   name="Text"
+		   type="text"
+		   value="" />
+	<button class="btn btn-sm btn-success" type="submit">Cauta</button>
+</form>
+<br /> <br />
+<div class="row">
+	@foreach (proiectDaw.Models.Categories item in ViewBag.Categories)
+	{
+		<a href="/Categories/Show/@item.Id" class="btn btn-primary" role="button">@item.Name</a>
+	}
+</div>
+@if (TempData.ContainsKey("message"))
+{
+	if (TempData["message"].Equals("Exista rezultate"))
+	{
+		<h3 class="alert alert-success" role="alert">@ViewBag.message</h3>
+		<div class="row">
+
+			@foreach (proiectDaw.Models.Pictures item in ViewBag.Pictures)
+			{
+				@Html.Partial("PhotoThumbnail", item);
+			}
+
+		</div>
+	}
+	else
+	{
+		<h3 class="alert alert-danger" role="alert">@ViewBag.message</h3>
+	}
+}
