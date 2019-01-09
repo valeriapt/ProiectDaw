@@ -47,11 +47,11 @@
 
 
 <div>
-    Nume: @ViewBag.nume
+    
     @foreach (proiectDaw.Models.Albums item in ViewBag.Albums)
-    {
-        // merge doar ca nu am facut controllerul la albume si nu are ce sa arata ( tabela e goala)
-        @item.Pictures.Count
+	{
+		// merge doar ca nu am facut controllerul la albume si nu are ce sa arata ( tabela e goala)
+        <h4>@item.Name  </h4>
         <div class="row">
 
             @foreach (proiectDaw.Models.Pictures pic in item.Pictures)

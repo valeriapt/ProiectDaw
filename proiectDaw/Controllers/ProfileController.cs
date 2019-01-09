@@ -46,7 +46,7 @@ namespace proiectDaw.Controllers
                 var albums = db.Albums.Where(a => a.UserId == userid).Include(c => c.Pictures).ToList();
                 Profile profile = db.Profiles.SingleOrDefault(p => p.UserId == userid);
                 //var profile = db.Profiles.Where(p => p.UserId == userid);
-                ViewBag.nume = albums.ElementAt(0).Id;
+                //ViewBag.nume = albums.ElementAt(0).Id;
                 ViewBag.Albums = albums;
                 ViewBag.Profiles = profile;
                 /*
