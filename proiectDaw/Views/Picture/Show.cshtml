@@ -60,10 +60,10 @@
 }
 
 	<form method="post" action="/Comments/New/@Model.Id">
-		@Html.TextBox("Text", "")
+		@Html.TextBox("Text", null)
 		<span class="field-validation-valid text-danger"
 			  data-valmsg-for="Text"
-			  data-valmsg-replace="true">Comment text is required!!!
+			  data-valmsg-replace="true">
 		</span>
 		<input type="hidden" name="photoId" id="photoId" value=@Model.Id> </input>
 		<button class="btn btn-sm btn-success" type="submit">Add Comment</button>

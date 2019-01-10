@@ -22,22 +22,22 @@
     @Html.Label("Username", "Username")
     <br />
     @Html.EditorFor(m => m.Username)
-    @Html.ValidationMessageFor(model => model.Username, "Mandatory field!", new { @class = "text-danger " })
+    @Html.ValidationMessageFor(model => model.Username, null, new { @class = "text-danger " })
     <br /><br />
     @Html.Label("Last Name", "Last Name")
     <br />
     @Html.EditorFor(m => m.LastName)
-    @Html.ValidationMessageFor(model => model.LastName, "Mandatory field!", new { @class = "text-danger " })
+    @Html.ValidationMessageFor(model => model.LastName, null, new { @class = "text-danger " })
     <br /><br />
     @Html.Label("First Name", "First Name")
     <br />
     @Html.EditorFor(m => m.FirstName)
-    @Html.ValidationMessageFor(model => model.FirstName, "Mandatory field!", new { @class = "text-danger " })
+    @Html.ValidationMessageFor(model => model.FirstName, null, new { @class = "text-danger " })
     <br /><br />
     @Html.Label("Age", "Age")
     <br />
     @Html.EditorFor(m => m.Age)
-    @Html.ValidationMessageFor(model => model.Age, "Mandatory field!", new { @class = "text-danger " })
+    @Html.ValidationMessageFor(model => model.Age, null, new { @class = "text-danger " })
     <br /><br />
     <br />
     <button class="btn btn-sm btn-success" type="submit">Modifica profil</button>

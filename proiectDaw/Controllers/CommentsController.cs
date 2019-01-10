@@ -17,7 +17,8 @@ namespace proiectDaw.Controllers
 
             return View();
         }*/
-
+        //TODO: ca sa faca validarile, campurile pentru care se fac validari trebuie sa fie Required!!!
+        //TODO: pentru comentariu acceptat sau respins mai trebuie o coloana in tabelul Comments?
         [HttpPost]
         public ActionResult New(Comments comment, int? photoId)
         {

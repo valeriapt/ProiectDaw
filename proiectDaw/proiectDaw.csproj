@@ -186,9 +186,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901091522070_AddedUserIdToComments.cs" />
-    <Compile Include="Migrations\201901091522070_AddedUserIdToComments.Designer.cs">
-      <DependentUpon>201901091522070_AddedUserIdToComments.cs</DependentUpon>
+    <Compile Include="Migrations\201901091813233_CommentsMigration.cs" />
+    <Compile Include="Migrations\201901091813233_CommentsMigration.Designer.cs">
+      <DependentUpon>201901091813233_CommentsMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -294,8 +294,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901091522070_AddedUserIdToComments.resx">
-      <DependentUpon>201901091522070_AddedUserIdToComments.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901091813233_CommentsMigration.resx">
+      <DependentUpon>201901091813233_CommentsMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
