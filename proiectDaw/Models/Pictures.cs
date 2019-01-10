@@ -13,9 +13,10 @@ namespace proiectDaw.Models
 	{
 		[Key]
 		public int Id { get; set; }
+		[Required]
 		public string Name { get; set; }
-		//[Required]
-		//public byte[] Image { get; set; }
+		
+		[Required]
 		public string ImagePath { get; set; }
 		[NotMapped]
 		public HttpPostedFileBase ImageFile { get; set; }
@@ -23,6 +24,7 @@ namespace proiectDaw.Models
 		[Required]
 		public int CategoryId { get; set; }
 		public string Description { get; set; }
+		[Required]
 		public int AlbumId { get; set; }
 		public DateTime Date { get; set; }
 
@@ -31,9 +33,8 @@ namespace proiectDaw.Models
         public virtual Categories Category { get; set; }
         public virtual Albums Album { get; set; }
 
-        //new
+       
         public IEnumerable<SelectListItem> Categories { get; set; }
         public IEnumerable<SelectListItem> Albums { get; set; }
-        //TODO: adaugare relatia "o poza apartine unei categorii"
     }
 }

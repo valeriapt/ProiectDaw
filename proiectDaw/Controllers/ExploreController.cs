@@ -7,7 +7,8 @@ using System.Web.Mvc;
 
 namespace proiectDaw.Controllers
 {
-    public class ExploreController : Controller
+	
+	public class ExploreController : Controller
     {
 		private ApplicationDbContext db = new ApplicationDbContext();
 		[HttpGet]

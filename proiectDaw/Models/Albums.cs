@@ -10,11 +10,11 @@ namespace proiectDaw.Models
 	{
 		[Key]
 		public int Id { get; set; }
-		[Required]
+		[Required][MinLength(5)]
 		public string Name { get; set; }
 		public string UserId { get; set; }  
 
-		public string CreatedBy { get; set; }  // username?
+		public string CreatedBy { get; set; }  
 		public virtual ICollection<Pictures> Pictures{ get; set; }
 		public virtual ApplicationUser User { get; set; }
 	}

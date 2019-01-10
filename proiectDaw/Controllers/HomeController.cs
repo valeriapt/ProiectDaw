@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace proiectDaw.Controllers
 {
+	
 	public class HomeController : Controller
 	{
 		private ApplicationDbContext db = new ApplicationDbContext();

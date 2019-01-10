@@ -1,77 +1,94 @@
 ﻿@model proiectDaw.Models.Pictures
 
 @{
-    ViewBag.Title = "Show";
+	ViewBag.Title = "Show";
 }
 
 <h2>@Html.DisplayFor(model => model.Name)</h2>
 
 <div>
 
-    <hr />
-    <dl class="dl-horizontal">
+	<hr />
+	<dl class="dl-horizontal">
 
 
-        <dd>
-            <img src="@Url.Content(Model.ImagePath)" width=" 250" height="250" />
-        </dd>
+		<dd>
+			<img src="@Url.Content(Model.ImagePath)" width="600" height="600" />
+		</dd>
 
-        <dt>
-            Category
-        </dt>
+		<dt>
+			Category
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Category.Name)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Category.Name)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Description)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Description)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Album.Name)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Album.Name)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Album.Name)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Album.Name)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Date)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Date)
+		</dd>
 
 
 
-    </dl>
+	</dl>
 </div>
+
+
+
+@if (ViewBag.CanEdit == true)
+{
+	<div class="input-group " role="group" aria-label="...">	
+			<form method="post"  action="/Picture/Edit/@Model.Id">
+				<button class="form-control" type="submit">Edit</button>
+			</form>
+			<form method="post" action="/Picture/Delete/@Model.Id">
+				@Html.HttpMethodOverride(HttpVerbs.Delete)
+				<button class="form-control" type="submit">Delete</button>
+			</form>	
+	</div>
+}
+
+
 
 <h2> Comments</h2>
 @if (TempData.ContainsKey("message"))
 {
-    <h3 class="alert alert-info" role="alert">@ViewBag.message</h3>
+	<h3 class="alert alert-info" role="alert">@ViewBag.message</h3>
 }
 
-	<form method="post" action="/Comments/New/@Model.Id">
-		@Html.TextBox("Text", null)
-		<span class="field-validation-valid text-danger"
-			  data-valmsg-for="Text"
-			  data-valmsg-replace="true">
-		</span>
-		<input type="hidden" name="photoId" id="photoId" value=@Model.Id> </input>
-		<button class="btn btn-sm btn-success" type="submit">Add Comment</button>
-	</form>
+<form method="post" action="/Comments/New/@Model.Id">
+	@Html.TextBox("Text", null)
+	<span class="field-validation-valid text-danger"
+		  data-valmsg-for="Text"
+		  data-valmsg-replace="true">
+	</span>
+	<input type="hidden" name="photoId" id="photoId" value=@Model.Id> </input>
+	<button class="btn btn-sm btn-success" type="submit">Add Comment</button>
+</form>
 @foreach (proiectDaw.Models.Comments item in ViewBag.Comments)
 {
 	<div class="row">
-		
+
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -82,14 +99,14 @@
 
 					<form method="post" action="/Comments/Delete/@item.Id">
 						@Html.HttpMethodOverride(HttpVerbs.Delete)
-						<button class="btn btn-sm btn-danger" type="submit">Sterge comentariul</button>
+						<button class="btn btn-sm btn-danger" type="submit">Delete comment</button>
 					</form>
-					<a class="btn btn-sm btn-info" href="/Comments/Edit/@item.Id">Modifica comentariul</a>
+					<a class="btn btn-sm btn-info" href="/Comments/Edit/@item.Id">Modify comment</a>
 				}
 			</div>
 
 			<div class="panel-body">
-				Continut articol: <strong>@item.Text</strong>
+				 <strong>@item.Text</strong>
 				<br />
 
 				<br />
@@ -103,8 +120,3 @@
 <!-- TODO: comments in the same page-->
 
 
-
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

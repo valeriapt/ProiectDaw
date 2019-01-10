@@ -1,34 +1,27 @@
 ﻿@model proiectDaw.Models.Categories
 
 @{
-    ViewBag.Title = "Afisare categorie";
+	ViewBag.Title = "Afisare categorie";
 }
 
 <h2>@ViewBag.Title</h2>
 <h1>@Model.Name</h1>
 <br />
 
-<a class="btn btn-sm btn-info" href="/Categories/Edit/@Model.Id">Modifica categoria</a>
-<br /><br />
-<form method="post" action="/Categories/Delete/@Model.Id">
-    @Html.HttpMethodOverride(HttpVerbs.Delete)
-    <button class="btn btn-sm btn-danger" type="submit">Sterge categoria</button>
-</form>
-
+@if (ViewBag.IsAdmin == true)
+{
+	<a class="btn btn-sm btn-info" href="/Categories/Edit/@Model.Id">Modify category</a>
+	<br /><br />
+	<form method="post" action="/Categories/Delete/@Model.Id">
+		@Html.HttpMethodOverride(HttpVerbs.Delete)
+		<button class="btn btn-sm btn-danger" type="submit">Delete category</button>
+	</form>
+}
 <div class="row">
 
-    @foreach (proiectDaw.Models.Pictures item in ViewBag.Pictures)
-    {
-        @Html.Partial("PhotoThumbnail", item);
-    }
+	@foreach (proiectDaw.Models.Pictures item in ViewBag.Pictures)
+	{
+		@Html.Partial("PhotoThumbnail", item);
+	}
 
 </div>
-
-
-
-<hr />
-<a class="btn btn-sm btn-success" href="/Article/Index">Inapoi la articole</a>
-<br /><br />
-<a class="btn btn-sm btn-success" href="/Categories/Index">Inapoi la categorii</a>
-<br />
-

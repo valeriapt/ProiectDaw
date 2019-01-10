@@ -11,6 +11,7 @@ namespace proiectDaw.Controllers
     {
 		private ApplicationDbContext db = new ApplicationDbContext();
 		// GET: Categories
+		[Authorize(Roles = "Administrator")]
 		public ActionResult Index()
         {
 			var categories = from cat in db.Categories orderby cat.Name select cat;
@@ -22,18 +23,21 @@ namespace proiectDaw.Controllers
             return View();
         }
 
+		[Authorize(Roles = "Administrator")]
 		public ActionResult New()
 		{
 			return View();
 		}
+
 		[HttpPost]
+		[Authorize(Roles = "Administrator")]
 		public ActionResult New(Categories category)
 		{
 			try
 			{
-				db.Categories.Add(category);  // TODO:
+				db.Categories.Add(category); 
 				db.SaveChanges();
-				TempData["message"] = "Categoria a fost adaugata!";
+				TempData["message"] = "Category added!";
 				return RedirectToAction("Index");
 			}
 			catch (Exception e)
@@ -42,8 +46,14 @@ namespace proiectDaw.Controllers
 			}
 		}
 
+		
 		public ActionResult Show(int id)
 		{
+			if (User.IsInRole("Administrator"))
+			{
+				ViewBag.IsAdmin = true;
+			}
+			else ViewBag.IsAdmin = false;
 			Categories category = db.Categories.Find(id);
 			ViewBag.Category = category;
 			var pics = from pic in db.Pictures where pic.CategoryId == id orderby pic.Date descending select pic;
@@ -51,7 +61,8 @@ namespace proiectDaw.Controllers
 			return View(category);
 			//return View();
 		}
-		//TODO: admin only 
+
+		[Authorize(Roles = "Administrator")]
 		public ActionResult Edit(int id)
 		{
 			Categories category = db.Categories.Find(id);
@@ -60,6 +71,7 @@ namespace proiectDaw.Controllers
 		}
 
 		[HttpPut]
+		[Authorize(Roles = "Administrator")]
 		public ActionResult Edit(int id, Categories requestCategory)
 		{
 			try
@@ -71,7 +83,7 @@ namespace proiectDaw.Controllers
 					{
 						category.Name = requestCategory.Name;
 						db.SaveChanges();
-						TempData["message"] = "Categoria a fost modificata!";
+						TempData["message"] = "Category updated!";
 					}
 					return RedirectToAction("Index");
 				}
@@ -88,12 +100,13 @@ namespace proiectDaw.Controllers
 		}
 
 		[HttpDelete]
+		[Authorize(Roles = "Administrator")]
 		public ActionResult Delete(int id)
 		{
 			Categories category = db.Categories.Find(id);
 			db.Categories.Remove(category);
 			db.SaveChanges();
-			TempData["message"] = "Categoria a fost stearsa!";
+			TempData["message"] = "Category deleted!";
 			return RedirectToAction("Index");
 		}
 

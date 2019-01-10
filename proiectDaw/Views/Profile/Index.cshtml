@@ -49,26 +49,33 @@
 <a class="btn btn-sm btn-info" href="/Profile/Edit/@Model.Id"> Edit profile </a>
 <br /><br />
 
+@if (ViewBag.IsAdmin == true)
+{
+	<a class="btn btn-sm btn-success" href="/Categories/Index">See categories</a>
+}
+else
+{
+	<h3>Albums</h3>
 
-<h3>Albums</h3>
+	<a href="/Picture/Add" class="btn btn-primary" role="button">Add photo</a>
+	<a href="/Album/New" class="btn btn-primary" role="button">Add album</a>
+	<div>
 
+		@foreach (proiectDaw.Models.Albums item in ViewBag.Albums)
+		{
+			// merge doar ca nu am facut controllerul la albume si nu are ce sa arata ( tabela e goala)
+			<h4><a href="/Album/Show/@item.Id" class="btn btn-info" role="button">@item.Name</a></h4>
+			<div class="row">
 
-<div>
+				@foreach (proiectDaw.Models.Pictures pic in item.Pictures)
+				{
+					<!--  aici ar trebui puse poze-->
 
-	@foreach (proiectDaw.Models.Albums item in ViewBag.Albums)
-	{
-		// merge doar ca nu am facut controllerul la albume si nu are ce sa arata ( tabela e goala)
-		<h4>@item.Name  </h4>
-		<div class="row">
+					@Html.Partial("PhotoThumbnail", pic);
 
-			@foreach (proiectDaw.Models.Pictures pic in item.Pictures)
-			{
-				<!--  aici ar trebui puse poze-->
+				}
+			</div>
+		}
 
-				@Html.Partial("PhotoThumbnail", pic);
-
-			}
-		</div>
-	}
-
-</div>
+	</div>
+}

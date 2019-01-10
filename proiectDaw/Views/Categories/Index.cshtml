@@ -8,6 +8,10 @@
 {
 	<h3 class="alert alert-info" role="alert">@ViewBag.message</h3>
 }
+
+
+<a class="btn btn-sm btn-success" href="/Categories/New">Add category</a>
+
 @foreach (var category in ViewBag.Categories)
 {
 	<p>@category.Name</p>
@@ -17,5 +21,4 @@
 	<hr />
 	<br />
 }
-<a class="btn btn-sm btn-success" href="/Categories/New">Adauga categorie</a>
 <br />

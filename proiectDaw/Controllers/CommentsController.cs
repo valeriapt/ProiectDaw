@@ -12,15 +12,11 @@ namespace proiectDaw.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
         // GET: Comments
-        /*public ActionResult Index(int id)
-        { 
-
-            return View();
-        }*/
+        
         //TODO: ca sa faca validarile, campurile pentru care se fac validari trebuie sa fie Required!!!
-        //TODO: pentru comentariu acceptat sau respins mai trebuie o coloana in tabelul Comments?
         [HttpPost]
-        public ActionResult New(Comments comment, int? photoId)
+		[Authorize(Roles = "Editor")]
+		public ActionResult New(Comments comment, int? photoId)
         {
             try
             {
@@ -32,7 +28,7 @@ namespace proiectDaw.Controllers
                 comment.PictureID = (int) photoId;
                 db.Comments.Add(comment);
                 db.SaveChanges();
-                TempData["message"] = "Comentariul a fost adaugat!";
+                TempData["message"] = "Comment added!";
                 return RedirectToAction("Show","Picture", new { id = photoId });
             }
             catch (Exception e)
@@ -42,6 +38,7 @@ namespace proiectDaw.Controllers
 			}
         }
 
+		[Authorize(Roles = "Editor")]
 		public ActionResult Edit(int id)
 		{
 			Comments com = db.Comments.Find(id);
@@ -50,6 +47,7 @@ namespace proiectDaw.Controllers
 		}
 
 		[HttpPut]
+		[Authorize(Roles = "Editor")]
 		public ActionResult Edit(int id, Comments requestComment)
 		{
 			try
@@ -61,7 +59,7 @@ namespace proiectDaw.Controllers
 					{
 						com.Text = requestComment.Text;
 						db.SaveChanges();
-						TempData["message"] = "Comentariul a fost modificat!";
+						TempData["message"] = "Comment updated!";
 					}
 					return RedirectToAction("Show", "Picture", new { id = com.PictureID});
 				}
@@ -87,12 +85,12 @@ namespace proiectDaw.Controllers
 			{
 				db.Comments.Remove(comment);
 				db.SaveChanges();
-				TempData["message"] = "Comentariul a fost sters !";
+				TempData["message"] = "Comment deleted !";
 				return RedirectToAction("Show","Picture",new {id = comment.PictureID } );
 			}
 			else
 			{
-				TempData["message"] = "Nu aveti voie sa stergeti acest comentariu !";
+				TempData["message"] = "You don't have the right to delete this comment!";
 				return RedirectToAction("Show", "Picture", new { id = comment.PictureID });
 			}
 		}

@@ -13,13 +13,15 @@ namespace proiectDaw.Controllers
     {
 		private ApplicationDbContext db = new ApplicationDbContext();
 		// GET: Album
-		
 
+		[Authorize(Roles = "Editor")]
 		public ActionResult New()
 		{
 			return View();
 		}
+		
 		[HttpPost]
+		[Authorize(Roles = "Editor")]
 		public ActionResult New(Albums album)
 		{
 			try
@@ -28,10 +30,10 @@ namespace proiectDaw.Controllers
                 album.UserId = userid;
                 Profile user = db.Profiles.Where(u => u.UserId == userid).First();
                 album.CreatedBy = user.Username;
-				db.Albums.Add(album);  // TODO:
+				db.Albums.Add(album);  
 				db.SaveChanges();
-				TempData["message"] = "Albumul a fost adaugat!";
-				return RedirectToAction("Show",new { id = album.Id });
+				TempData["message"] = "Album added!";
+				return RedirectToAction("Index","Profile");
 			}
 			catch (Exception e)
 			{
@@ -39,21 +41,17 @@ namespace proiectDaw.Controllers
 			}
 		}
 
+		
 		public ActionResult Show(int id)
 		{
 			Albums album = db.Albums.Find(id);
 			ViewBag.Album = album;
-			// poate merge si cu aia din clasa
-			//var pics = from pic in db.Pictures where pic.AlbumId == id orderby pic.Date descending select pic;
             var pics = db.Pictures.Where(a => a.AlbumId == id).OrderByDescending(p => p.Date).Include("Album").Include("Category");
-            //var pics = db.Pictures.Include("Album").OrderByDescending(p => p.Date).ToList();
             ViewBag.Pictures = pics;
 			return View(album);
-			//return View();
 		}
 
-
-		//TODO: admin only 
+		[Authorize(Roles = "Editor")]
 		public ActionResult Edit(int id)
 		{
 			Albums album = db.Albums.Find(id);
@@ -62,6 +60,7 @@ namespace proiectDaw.Controllers
 		}
 
 		[HttpPut]
+		[Authorize(Roles = "Editor")]
 		public ActionResult Edit(int id, Albums requestAlbum)
 		{
 			try
@@ -73,7 +72,7 @@ namespace proiectDaw.Controllers
 					{
 						album.Name = requestAlbum.Name;
 						db.SaveChanges();
-						TempData["message"] = "Albumul a fost modificata!";
+						TempData["message"] = "Album updated!";
 					}
 					return RedirectToAction("Show", new { id = album.Id });
 				}
@@ -90,13 +89,15 @@ namespace proiectDaw.Controllers
 		}
 
 		[HttpDelete]
+		[Authorize(Roles = "Editor,Administrator")]
 		public ActionResult Delete(int id)
 		{
-			Categories category = db.Categories.Find(id);
-			db.Categories.Remove(category);
+			Albums album = db.Albums.Find(id);
+			db.Albums.Remove(album);
 			db.SaveChanges();
-			TempData["message"] = "Categoria a fost stearsa!";
-			return RedirectToAction("Index");
+			TempData["message"] = "The album has been deleted!";
+
+			return RedirectToAction("Index", "Profile");
 		}
 	}
 }

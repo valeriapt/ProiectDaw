@@ -13,8 +13,11 @@ namespace proiectDaw.Models
 		public int Id { get; set; }
 		public string  Username{ get; set; }
 		public string UserId { get; set; }
+		[RegularExpression ("[A-Za-z]+")]
 		public string LastName { get; set; }
+		[RegularExpression("[A-Za-z]+" )]
 		public string FirstName { get; set; }
+		[Range (1, 100) ]
 		public int Age { get; set; }
 
 		public string ProfileImagePath { get; set; }
