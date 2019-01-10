@@ -59,7 +59,7 @@
     <h3 class="alert alert-info" role="alert">@ViewBag.message</h3>
 }
 
-	<form method="post" action="/Comments/New">
+	<form method="post" action="/Comments/New/@Model.Id">
 		@Html.TextBox("Text", "")
 		<span class="field-validation-valid text-danger"
 			  data-valmsg-for="Text"

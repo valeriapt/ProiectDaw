@@ -82,14 +82,19 @@ namespace proiectDaw.Controllers
                         profile.Username = requestProfile.Username;
                         profile.LastName = requestProfile.LastName;
                         profile.Age = requestProfile.Age;
-                        string fileName = Path.GetFileNameWithoutExtension(requestProfile.ProfileImageFile.FileName);
-                        string extension = Path.GetExtension(requestProfile.ProfileImageFile.FileName);
-                        fileName = fileName + "_" + DateTime.Now.ToString("yymmssfff") + "_" + extension;
-                        profile.ProfileImagePath = "~/Image/" + fileName;
-                        fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
-                        profile.ProfileImageFile.SaveAs(fileName);
+						if (requestProfile.ProfileImageFile != null)
+						{
+
+							string fileName = Path.GetFileNameWithoutExtension(requestProfile.ProfileImageFile.FileName);
+							string extension = Path.GetExtension(requestProfile.ProfileImageFile.FileName);
+							fileName = fileName + "_" + DateTime.Now.ToString("yymmssfff") + "_" + extension;
+							profile.ProfileImagePath = "~/Image/" + fileName;
+							fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
+							profile.ProfileImageFile.SaveAs(fileName);
+						}
+
                         db.SaveChanges();
-                        TempData["message"] = "Profilul a fost modificat!";
+                       // TempData["message"] = "Profilul a fost modificat!";
                     }
                     return RedirectToAction("Index");
                 }

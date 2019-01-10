@@ -36,8 +36,9 @@ namespace proiectDaw.Controllers
             }
             catch (Exception e)
             {
-                return View();
-            }
+				//return View();
+				return RedirectToAction("Show", "Picture", new { id = photoId });
+			}
         }
 
 		public ActionResult Edit(int id)
