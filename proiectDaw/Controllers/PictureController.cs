@@ -102,6 +102,7 @@ namespace proiectDaw.Controllers
 			PicModel.ImageFile.SaveAs(fileName);
             PicModel.Categories = GetAllCategories();
             PicModel.Albums = GetAllAlbums();
+            PicModel.Date = DateTime.Now;
             string userid = User.Identity.GetUserId();
             PicModel.UserId = userid;
             db.Pictures.Add(PicModel);
