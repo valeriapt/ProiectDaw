@@ -16,7 +16,7 @@ namespace proiectDaw.Controllers
     {
         // GET: Profile
         private ApplicationDbContext db = new ApplicationDbContext();
-		[Authorize(Roles = "Editor,Administrator")]
+		[Authorize(Roles = "Editor,Administrator")] 
 		public ActionResult Index()
         {
             String userid = User.Identity.GetUserId();
