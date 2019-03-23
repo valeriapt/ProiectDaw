@@ -102,7 +102,15 @@ namespace proiectDaw.Controllers
 							profile.ProfileImagePath = "~/Image/" + fileName;
 							fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
 							profile.ProfileImageFile.SaveAs(fileName);
-						}
+						} else
+                        {
+                            string fileName = "default_profile_picture";
+                            string extension = ".jpg";
+                            fileName = fileName + extension;
+                            profile.ProfileImagePath = "~/Image/" + fileName;
+                            fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
+                            //profile.ProfileImageFile.fileName;
+                        }
 						db.SaveChanges();
                         TempData["message"] = "Profilul a fost modificat!";
                     }
