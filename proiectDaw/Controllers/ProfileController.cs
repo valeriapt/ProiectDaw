@@ -16,7 +16,7 @@ namespace proiectDaw.Controllers
     {
         // GET: Profile
         private ApplicationDbContext db = new ApplicationDbContext();
-		[Authorize(Roles = "Editor,Administrator")] 
+		//[Authorize(Roles = "Editor,Administrator")]
 		public ActionResult Index()
         {
             String userid = User.Identity.GetUserId();
@@ -78,7 +78,7 @@ namespace proiectDaw.Controllers
                 {
                     String userid = User.Identity.GetUserId();
                     var profile = db.Profiles.SingleOrDefault(p => p.UserId == userid);
-					if (profile.Username == "user")
+					if (profile.Username == "")
 					{
 						Albums firstAlbum = new Albums
 						{
