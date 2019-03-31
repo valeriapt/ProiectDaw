@@ -57,18 +57,31 @@
 
 @if (ViewBag.CanEdit == true)
 {
-	<div class="input-group " role="group" aria-label="...">	
-			<form method="post"  action="/Picture/Edit/@Model.Id">
-				<button class="form-control" type="submit">Edit</button>
-			</form>
-			<form method="post" action="/Picture/Delete/@Model.Id">
-				@Html.HttpMethodOverride(HttpVerbs.Delete)
-				<button class="form-control" type="submit">Delete</button>
-			</form>	
+	<div class="input-group " role="group" aria-label="...">
+		<form method="post" action="/Picture/Edit/@Model.Id">
+			<button class="form-control" type="submit">Edit</button>
+		</form>
+		<form method="post" action="/Picture/Delete/@Model.Id">
+			@Html.HttpMethodOverride(HttpVerbs.Delete)
+			<button class="form-control" type="submit">Delete</button>
+		</form>
 	</div>
 }
 
-
+@if (ViewBag.Liked == false)
+{
+	<form method="post" action="/Like/New/@Model.Id">				
+		<input type="hidden" name="photoId" id="photoId" value=@Model.Id> </input>
+		<button class="btn btn-sm btn-success" type="submit">Like</button>
+	</form>
+}
+@if (ViewBag.Liked == true)
+{	
+	<form method="post" action="/Like/Delete/@ViewBag.LikeId">
+		@Html.HttpMethodOverride(HttpVerbs.Delete)
+		<button class="btn btn-sm btn-success" type="submit">Unlike</button>
+	</form>
+}
 
 <h2> Comments</h2>
 @if (TempData.ContainsKey("message"))
@@ -106,7 +119,7 @@
 			</div>
 
 			<div class="panel-body">
-				 <strong>@item.Text</strong>
+				<strong>@item.Text</strong>
 				<br />
 
 				<br />
@@ -118,5 +131,3 @@
 }
 
 <!-- TODO: comments in the same page-->
-
-

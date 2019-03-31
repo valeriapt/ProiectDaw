@@ -28,12 +28,16 @@ namespace proiectDaw.Models
 		public int AlbumId { get; set; }
 		public DateTime Date { get; set; }
 
+
+
+
 		public virtual ApplicationUser User { get; set; }
 		public virtual ICollection<Comments> Comments { get; set; }
+        public virtual ICollection<Likes> Likes { get; set; }
         public virtual Categories Category { get; set; }
         public virtual Albums Album { get; set; }
 
-       
+      
         public IEnumerable<SelectListItem> Categories { get; set; }
         public IEnumerable<SelectListItem> Albums { get; set; }
     }

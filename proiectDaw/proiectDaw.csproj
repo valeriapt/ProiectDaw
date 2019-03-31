@@ -180,6 +180,7 @@
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\ExploreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LikeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
@@ -190,12 +191,21 @@
     <Compile Include="Migrations\201903231628361_migrare.Designer.cs">
       <DependentUpon>201903231628361_migrare.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903281626585_updated-database.cs" />
+    <Compile Include="Migrations\201903281626585_updated-database.Designer.cs">
+      <DependentUpon>201903281626585_updated-database.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903281630477_updated-database2.cs" />
+    <Compile Include="Migrations\201903281630477_updated-database2.Designer.cs">
+      <DependentUpon>201903281630477_updated-database2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Albums.cs" />
     <Compile Include="Models\Categories.cs" />
     <Compile Include="Models\Comments.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Likes.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Pictures.cs" />
     <Compile Include="Models\Profile.cs" />
@@ -280,6 +290,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Image\" />
+    <Folder Include="Views\Like\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -297,6 +308,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201903231628361_migrare.resx">
       <DependentUpon>201903231628361_migrare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903281626585_updated-database.resx">
+      <DependentUpon>201903281626585_updated-database.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903281630477_updated-database2.resx">
+      <DependentUpon>201903281630477_updated-database2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

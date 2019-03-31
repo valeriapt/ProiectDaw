@@ -120,13 +120,25 @@ namespace proiectDaw.Controllers
 			string userid = User.Identity.GetUserId();
 			Pictures picModel = db.Pictures.Find(id);
 			var comments = db.Comments.Where(a => a.PictureID == id).ToList();
+            var likes = db.Likes.Where(a => a.PhotoId == id).ToList();
 			if (User.IsInRole("Administrator")) ViewBag.IsAdmin = true;
 			else ViewBag.IsAdmin = false;
-
 			if (User.IsInRole("Administrator") || picModel.UserId == userid) ViewBag.CanEdit = true;
 			else ViewBag.CanEdit = false;
 
-			ViewBag.Userid = userid;
+            ViewBag.Liked = false;
+            likes.ForEach(l =>
+            {
+                if (l.UserId == userid)
+                {
+                    ViewBag.Liked = true;
+                    ViewBag.LikeId = l.Id;
+
+                }
+
+            });
+            
+            ViewBag.Userid = userid;
 			ViewBag.Picture = picModel;
             ViewBag.Category = picModel.Categories;
             ViewBag.Album = picModel.Albums;
