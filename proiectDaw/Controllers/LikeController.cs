@@ -56,5 +56,20 @@ namespace proiectDaw.Controllers
                 return RedirectToAction("Show", "Picture", new { id = like.PhotoId });
             }
         }
+
+        public ActionResult Index()
+        {
+            String userid = User.Identity.GetUserId();
+            var liked = db.Likes.Where(l => l.UserId == userid).ToList();
+            List<Pictures> pictures = new List<Pictures>();
+            foreach (var like in liked)
+            {
+                pictures.AddRange(db.Pictures.Where(p => p.Id == like.PhotoId).ToList());
+            }
+
+            ViewBag.Pictures = pictures;
+            return View();
+
+        }
     }
 }

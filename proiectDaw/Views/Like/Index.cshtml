@@ -1,0 +1,16 @@
+﻿@model proiectDaw.Models.Albums
+
+@{
+    ViewBag.Title = "Liked photos";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="row">
+
+    @foreach (proiectDaw.Models.Pictures item in ViewBag.Pictures)
+    {
+        @Html.Partial("PhotoThumbnail", item);
+    }
+
+</div>
+

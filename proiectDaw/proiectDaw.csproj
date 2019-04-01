@@ -187,17 +187,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903231628361_migrare.cs" />
-    <Compile Include="Migrations\201903231628361_migrare.Designer.cs">
-      <DependentUpon>201903231628361_migrare.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903281626585_updated-database.cs" />
-    <Compile Include="Migrations\201903281626585_updated-database.Designer.cs">
-      <DependentUpon>201903281626585_updated-database.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903281630477_updated-database2.cs" />
-    <Compile Include="Migrations\201903281630477_updated-database2.Designer.cs">
-      <DependentUpon>201903281630477_updated-database2.cs</DependentUpon>
+    <Compile Include="Migrations\201904011543136_migrare.cs" />
+    <Compile Include="Migrations\201904011543136_migrare.Designer.cs">
+      <DependentUpon>201904011543136_migrare.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -286,11 +278,11 @@
     <Content Include="Views\Comments\Edit.cshtml" />
     <Content Include="Views\Explore\Index.cshtml" />
     <Content Include="Views\Picture\Edit.cshtml" />
+    <Content Include="Views\Like\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Image\" />
-    <Folder Include="Views\Like\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -306,14 +298,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903231628361_migrare.resx">
-      <DependentUpon>201903231628361_migrare.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903281626585_updated-database.resx">
-      <DependentUpon>201903281626585_updated-database.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903281630477_updated-database2.resx">
-      <DependentUpon>201903281630477_updated-database2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904011543136_migrare.resx">
+      <DependentUpon>201904011543136_migrare.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
