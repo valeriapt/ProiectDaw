@@ -6,11 +6,24 @@
 
 <h2>Recently added</h2>
 
-<div class="row">
+<main class="main-content ">
+    <div class="container-fluid photos">
+        <div class="row align-items-stretch">
+            @foreach (proiectDaw.Models.Pictures item in ViewBag.Pictures)
+            {
+                @Html.Partial("PhotoThumbnail", item);
+            }
+        </div>
+    </div>
+</main>
 
-    @foreach (proiectDaw.Models.Pictures item in ViewBag.Pictures)
-    {
-        @Html.Partial("PhotoThumbnail", item);
-     }
-        
-</div>
+
+
+            @*<div class="row">
+
+                @foreach (proiectDaw.Models.Pictures item in ViewBag.Pictures)
+                {
+                    @Html.Partial("PhotoThumbnail", item);
+                }
+
+            </div>*@

@@ -1,14 +1,25 @@
-﻿
-<div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-        <img src="@Url.Content(@Model.ImagePath)" onclick="location.href ='@Url.Action("Show", "Picture", new { id = Model.Id })'; return false;">
-        <div class="caption">
-            <h3>@Model.Name</h3>
-            <p>@Model.Description</p>
-            <p class="navbar-text navbar-right">@Model.Date</p>
-            <p><a href="/Categories/Show/@Model.CategoryId" class="btn btn-primary" role="button">@Model.Category.Name</a></p>
+﻿@*<div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <img src="@Url.Content(@Model.ImagePath)" onclick="location.href ='@Url.Action("Show", "Picture", new { id = Model.Id })'; return false;">
+            <div class="caption">
+                <h3>@Model.Name</h3>
+                <p>@Model.Description</p>
+                <p class="navbar-text navbar-right">@Model.Date</p>
+                <p><a href="/Categories/Show/@Model.CategoryId" class="btn btn-primary" role="button">@Model.Category.Name</a></p>
+            </div>
         </div>
-    </div>
+    </div>*@
+
+<div class="col-6 col-md-6 col-lg-4" data-aos="fade-up">
+    <a href="@Url.Action("Show", "Picture", new { id = Model.Id })" class="d-block photo-item">
+        <img src="@Url.Content(@Model.ImagePath)" alt="Image" class="img-fluid">
+        <div class="photo-text-more">
+            <div class="photo-text-more">
+                <h3 class="heading">@Model.Name</h3>
+          
+            </div>
+        </div>
+    </a>
 </div>
 
 <!--TODO: 'Model.CategoryId' dupa ce este facuta relatia 'o poza apartine unei categorii' -->
