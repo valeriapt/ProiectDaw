@@ -10,15 +10,15 @@
         </div>
     </div>*@
 
-<div class="col-6 col-md-6 col-lg-4" data-aos="fade-up">
+<div class="col-6 col-md-6 col-lg-4 " data-aos="fade-up">
     <a href="@Url.Action("Show", "Picture", new { id = Model.Id })" class="d-block photo-item">
-        <img src="@Url.Content(@Model.ImagePath)" alt="Image" class="img-fluid">
+        <img src="@Url.Content(@Model.ImagePath)" alt="Image" class="img-fluid" >
         <div class="photo-text-more">
             <div class="photo-text-more">
-                <h3 class="heading">@Model.Name</h3>
-          
+                <h3 class="heading">@Model.Name</h3>         
             </div>
         </div>
+
     </a>
 </div>
 
