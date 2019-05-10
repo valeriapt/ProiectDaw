@@ -62,38 +62,40 @@
                     <img src="@Url.Content(Model.ImagePath)" alt="Image" class="img-fluid" style=" width:100%;  height:100% ">
                 </figure>
                 
-              <div class=" input-group">
+				<div class=" input-group">
 
-                @if (ViewBag.Liked == false)
-                {
-                    <form method="post" action="/Like/New/@Model.Id">
-                        <input type="hidden" name="photoId" id="photoId" value=@Model.Id> </input>
-                        <button class="btn btn-sm btn-success " type="submit">Like</button>
-                    </form>
-                }
-                
-                @if (ViewBag.Liked == true)
-                {
-                    <form method="post" action="/Like/Delete/@ViewBag.LikeId">
-                        @Html.HttpMethodOverride(HttpVerbs.Delete)
-                            <button class="btn btn-sm btn-success " type="submit">Unlike</button>
-                    </form>
-                }
-                @if (ViewBag.CanEdit == true)
-                {
-                    <div class="input-group " role="group" aria-label="...">
-                        <form method="post" action="/Picture/Edit/@Model.Id">
-                                <button class=" btn btn-sm btn-success " type="submit">Edit</button>
-                              
-                        </form>
-                        <form method="post" action="/Picture/Delete/@Model.Id">
-                            @Html.HttpMethodOverride(HttpVerbs.Delete)
-                                <button class=" btn btn-sm btn-success " type="submit">Delete</button>
+					@if (ViewBag.Liked == false && ViewBag.CanEdit == false)
+					{
+						<form method="post" action="/Like/New/@Model.Id">
+						
+							<input type="hidden" name="photoId" id="photoId" value=@Model.Id> </input>
+							<input type="number" name="Rating" id="Rating"> </input>
+							<button class="btn btn-sm btn-success" type="submit">Add Rating</button>
+						</form>
+					}
 
-                        </form>
-                    </div>
-                }
-</div>
+					@if (ViewBag.Liked == true && ViewBag.CanEdit == false)
+					{
+						<form method="post" action="/Like/Delete/@ViewBag.LikeId">
+							@Html.HttpMethodOverride(HttpVerbs.Delete)
+							<button class="btn btn-sm btn-success " type="submit">Unlike</button>
+						</form>
+					}
+					@if (ViewBag.CanEdit == true)
+					{
+						<div class="input-group " role="group" aria-label="...">
+							<form method="post" action="/Picture/Edit/@Model.Id">
+								<button class=" btn btn-sm btn-success " type="submit">Edit</button>
+
+							</form>
+							<form method="post" action="/Picture/Delete/@Model.Id">
+								@Html.HttpMethodOverride(HttpVerbs.Delete)
+								<button class=" btn btn-sm btn-success " type="submit">Delete</button>
+
+							</form>
+						</div>
+					}
+				</div>
                     
                 <div class="row" data-aos="fade-up">
                     <h4 class="text-white mb-4" data-aos="fade-up">Category: @Html.DisplayFor(model => model.Category.Name)</h4>

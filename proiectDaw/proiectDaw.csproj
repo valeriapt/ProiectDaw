@@ -187,9 +187,25 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201904141103510_migratie1.cs" />
-    <Compile Include="Migrations\201904141103510_migratie1.Designer.cs">
-      <DependentUpon>201904141103510_migratie1.cs</DependentUpon>
+    <Compile Include="Migrations\201905100802428_MAKEiTwORK.cs" />
+    <Compile Include="Migrations\201905100802428_MAKEiTwORK.Designer.cs">
+      <DependentUpon>201905100802428_MAKEiTwORK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905100805484_AddedRating.cs" />
+    <Compile Include="Migrations\201905100805484_AddedRating.Designer.cs">
+      <DependentUpon>201905100805484_AddedRating.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905100807350_AddedScoreTable.cs" />
+    <Compile Include="Migrations\201905100807350_AddedScoreTable.Designer.cs">
+      <DependentUpon>201905100807350_AddedScoreTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905100809099_AddedSugestiiTable.cs" />
+    <Compile Include="Migrations\201905100809099_AddedSugestiiTable.Designer.cs">
+      <DependentUpon>201905100809099_AddedSugestiiTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905100810346_AddedTablesInDB.cs" />
+    <Compile Include="Migrations\201905100810346_AddedTablesInDB.Designer.cs">
+      <DependentUpon>201905100810346_AddedTablesInDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -201,6 +217,8 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Pictures.cs" />
     <Compile Include="Models\Profile.cs" />
+    <Compile Include="Models\Score.cs" />
+    <Compile Include="Models\Sugestii.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -298,8 +316,20 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201904141103510_migratie1.resx">
-      <DependentUpon>201904141103510_migratie1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905100802428_MAKEiTwORK.resx">
+      <DependentUpon>201905100802428_MAKEiTwORK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905100805484_AddedRating.resx">
+      <DependentUpon>201905100805484_AddedRating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905100807350_AddedScoreTable.resx">
+      <DependentUpon>201905100807350_AddedScoreTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905100809099_AddedSugestiiTable.resx">
+      <DependentUpon>201905100809099_AddedSugestiiTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905100810346_AddedTablesInDB.resx">
+      <DependentUpon>201905100810346_AddedTablesInDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

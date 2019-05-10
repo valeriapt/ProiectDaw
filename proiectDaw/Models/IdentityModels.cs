@@ -31,8 +31,10 @@ namespace proiectDaw.Models
 		public DbSet<Comments> Comments { get; set; }
 		public DbSet<Profile> Profiles { get; set; }
         public DbSet <Likes> Likes { get; set; }
+        public DbSet<Score> Score { get; set; }
+        public DbSet<Sugestii> Sugestii { get; set; }
 
-		public static ApplicationDbContext Create()
+        public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }

@@ -17,6 +17,7 @@ namespace proiectDaw.Models
         public string UserId { get; set; }
       
         public int PhotoId { get; set; }
+        public int Rating { get; set; }
 
         public virtual Pictures Picture { get; set; }
         public virtual ApplicationUser User { get; set; }
