@@ -31,7 +31,8 @@ namespace proiectDaw.Controllers
                     db.Sugestii.Remove(i);
                 // db.sugestii.R
                 db.SaveChanges();
-                var vecini = GetNearestNeighbors(userid, 5).ToList();
+                var nrUsersTotal = db.Users.Count();
+                var vecini = GetNearestNeighbors(userid, nrUsersTotal % 10 ).ToList();
                 var nrPoze = db.Pictures.Count();
                 var poze = db.Pictures.ToList();
                 var recomandari = new List<Sugestii>().ToList();
@@ -43,7 +44,8 @@ namespace proiectDaw.Controllers
                     else
                     {
                         int count = 0;
-                        for (int u = 0; u < 4; u++)
+
+                        for (int u = 0; u < nrUsersTotal % 10; u++)
                         {
                             var like = db.Likes.ToList().Where(a => (a.UserId == vecini[u]) && (a.PhotoId == poze[i].Id)).ToList();
                             var nota = 0.0;
@@ -65,8 +67,10 @@ namespace proiectDaw.Controllers
                 }
 
                 recomandari = recomandari.OrderByDescending(x => x.Score).ToList();
+                var nrRecomandari = recomandari.Count();
+                if (nrRecomandari > 12) nrRecomandari = 12;
                 var pictures = new List<Pictures>();
-                for (int i = 0; i <= 5; i++)
+                for (int i = 0; i < nrRecomandari; i++)
                 {
                     var pic = db.Pictures.ToList().Where(a => a.Id == recomandari[i].PozaId).First();
                     pictures.Add(pic);
