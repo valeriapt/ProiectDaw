@@ -4,7 +4,7 @@
     ViewBag.Title = "Show profile";
 }
 
-<h2>@Model.Username 's profile</h2>
+
 
 <!--if (TempData.ContainsKey("message"))
 {
@@ -44,64 +44,100 @@
 
 <main class="main-content">
     <div class="container-fluid photos">
-        <div class="row justify-content-center">
 
-            <div class="col-md-8 pt-4">
 
-                <div class="row">
-                    <div class="col-md-12" data-aos="fade-up">
-                        <div class="d-flex blog-entry align-items-start">
-                            <div class="mr-5 img-wrap">
-                                <a href="#"><img src="@Url.Content(Model.ProfileImagePath)" alt="Image" class="img-fluid"  style=" width:100%;  height:100% "></a>
-                            </div>
-                            <div>
-                                <h4 class="mt-0 mb-2"><a href="#">About me</a></h4>
-                                <div class="meta mb-3">Last name: @Model.LastName</div>
-                                <div class="meta mb-3">First name: @Model.FirstName</div>
-                                <div class="meta mb-3">Age: @Model.Age</div>
-                            </div>
-                            <a class="btn btn-sm btn-info" href="/Profile/Edit/@Model.Id"> Edit profile </a>
+        <div class="row">
 
-                            @if (ViewBag.IsAdmin == true)
+  
+                    <div class="col-sm-12">
+                        <div class="col-xs-12 col-sm-8">
+                            <h2>@Model.Username 's profile</h2>
+                            <p><strong>Last name: </strong> @Model.LastName </p>
+                            <p><strong>First name: </strong>  @Model.FirstName </p>
+                            <p><strong>Age: </strong> @Model.Age  </p>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 text-center">
+                            <figure>
+                                <img src="@Url.Content(Model.ProfileImagePath)" alt="Image" class="img-circle img-responsive">
+                         
+                            </figure>
+                        </div>
+                    </div>
+        </div>
+        <div class="row">
+                    <div class="col-xs-12 divider text-center">
+                        <div class="col-xs-12 col-sm-3 emphasis">
+                            <a class="btn btn-success btn-block" href="/Picture/Add">
+                                <span class="fa fa-plus-circle"></span>
+                                Add picture
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 emphasis">
+                            <a class="btn btn-success btn-block" href="/Album/New">
+                                <span class="fa fa-plus-circle"></span>
+                                Add album
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 emphasis">
+                            <a class="btn btn-info btn-block" href="/Like/Index">
+                                <span class="fa fa-plus-circle"></span>
+                                View liked photos
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 emphasis">
+                            <a class="btn btn-primary btn-block" href="/Profile/Edit/@Model.Id">
+                                <span class="fa fa-user"></span>
+                                Edit profile
+                            </a>
+                        </div>
+                     </div>
+        </div>
+   
+      
+
+        <div class="row">
+            <div class="col-md-12" data-aos="fade-up">
+                <div class="d-flex blog-entry align-items-start">
+
+
+                    @if (ViewBag.IsAdmin == true)
+                    {
+                        <a class="btn btn-sm btn-success" href="/Categories/Index">See categories</a>
+                    }
+                    else
+                    {
+
+                        <h3>Albums:</h3>
+
+                        <div>
+
+                            @foreach (proiectDaw.Models.Albums item in ViewBag.Albums)
                             {
-                                <a class="btn btn-sm btn-success" href="/Categories/Index">See categories</a>
-                            }
-                            else
-                            {
-                                <h3>Albums</h3>
+                                // merge doar ca nu am facut controllerul la albume si nu are ce sa arata ( tabela e goala)
+                                <h4><a href="/Album/Show/@item.Id" class="btn btn-info" role="button">@item.Name</a></h4>
+                                <div class="row">
 
-                                <a href="/Picture/Add" class="btn btn-primary" role="button">Add photo</a>
-                                <a href="/Album/New" class="btn btn-primary" role="button">Add album</a>
-                                <a href="/Like/Index" class="btn btn-primary" role="button">View liked photos</a>
-                                <div>
-
-                                    @foreach (proiectDaw.Models.Albums item in ViewBag.Albums)
+                                    @foreach (proiectDaw.Models.Pictures pic in item.Pictures)
                                     {
-                                        // merge doar ca nu am facut controllerul la albume si nu are ce sa arata ( tabela e goala)
-                                        <h4><a href="/Album/Show/@item.Id" class="btn btn-info" role="button">@item.Name</a></h4>
-                                        <div class="row">
+                                        <!--  aici ar trebui puse poze-->
 
-                                            @foreach (proiectDaw.Models.Pictures pic in item.Pictures)
-                                            {
-                                                <!--  aici ar trebui puse poze-->
+                                        @Html.Partial("PhotoThumbnail", pic);
 
-                                                @Html.Partial("PhotoThumbnail", pic);
-
-                                            }
-                                        </div>
                                     }
-
                                 </div>
                             }
 
                         </div>
+                    }
 
-
-                    </div>
-                    
                 </div>
+
+
             </div>
+
         </div>
+
+
     </div>
 </main>
 
