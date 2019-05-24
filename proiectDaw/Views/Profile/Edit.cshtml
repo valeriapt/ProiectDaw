@@ -1,7 +1,7 @@
 ﻿@model proiectDaw.Models.Profile
 
 @{
-    ViewBag.Titlu = "Editare profil";
+    ViewBag.Titlu = "Edit profile";
 }
 
 <h2>@ViewBag.Titlu</h2>
@@ -10,6 +10,8 @@
 {
     @Html.AntiForgeryToken()
 
+<div class="form-horizontal">
+    <hr/>
     @Html.HttpMethodOverride(HttpVerbs.Put)
     @Html.ValidationSummary(false, "", new { @class = "text-danger" })
     <br />
@@ -19,27 +21,50 @@
             <input type="file" name="ProfileImageFile" class="col-md-10" />
         </div>
     </div>
-    @Html.Label("Username", "Username")
-    <br />
-    @Html.EditorFor(m => m.Username)
-    @Html.ValidationMessageFor(model => model.Username, null, new { @class = "text-danger " })
-    <br /><br />
-    @Html.Label("Last Name", "Last Name")
-    <br />
-    @Html.EditorFor(m => m.LastName)
-    @Html.ValidationMessageFor(model => model.LastName, null, new { @class = "text-danger " })
-    <br /><br />
-    @Html.Label("First Name", "First Name")
-    <br />
-    @Html.EditorFor(m => m.FirstName)
-    @Html.ValidationMessageFor(model => model.FirstName, null, new { @class = "text-danger " })
-    <br /><br />
-    @Html.Label("Age", "Age")
-    <br />
-    @Html.EditorFor(m => m.Age)
-    @Html.ValidationMessageFor(model => model.Age, null, new { @class = "text-danger " })
-    <br /><br />
-    <br />
-    <button class="btn btn-sm btn-success" type="submit">Modifica profil</button>
-}
-<!--</form>-->
+    <div class="form-group">
+        <label class="control-label col-md-2">  @Html.Label("Username", "Username") </label>
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.Username)
+            @Html.ValidationMessageFor(model => model.Username, null, new { @class = "text-danger " })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2"> @Html.Label("Last Name", "Last Name")  </label>
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.LastName)
+            @Html.ValidationMessageFor(model => model.LastName, null, new { @class = "text-danger " })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">  @Html.Label("First Name", "First Name") </label>
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.FirstName)
+            @Html.ValidationMessageFor(model => model.FirstName, null, new { @class = "text-danger " })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">   @Html.Label("Age", "Age") </label>
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.Age)
+            @Html.ValidationMessageFor(model => model.Age, null, new { @class = "text-danger " })
+        </div>
+    </div>
+
+    <div class="form-group">
+      
+        <div class="col-md-offset-2  col-md-10">
+       
+            <button class="btn btn-sm btn-success" type="submit">Save changes</button>
+        </div>
+    </div>
+
+    
+
+
+ 
+
+</div>
+    }
+    <!--</form>-->

@@ -20,11 +20,12 @@ namespace proiectDaw.Controllers
             {
                 var pictures = db.Pictures.Include("Category").Include("Album").OrderByDescending(p => p.Date);//from pic in db.Pictures orderby pic.Date descending select pic;
                 ViewBag.Pictures = pictures;
+                ViewBag.Title = "Recently added photos...";
                 return View();
             }
             else
             {
-
+                ViewBag.Title = "You may also like..";
                 foreach (Score i in db.Score)
                     db.Score.Remove(i);
                 foreach (Sugestii i in db.Sugestii)
@@ -66,7 +67,7 @@ namespace proiectDaw.Controllers
                     recomandari.Add(s);
                 }
 
-                recomandari = recomandari.OrderByDescending(x => x.Score).ToList();
+                recomandari = recomandari.OrderByDescending(x => x.Score).Where(x => x.Score > 0).ToList();
                 var nrRecomandari = recomandari.Count();
                 if (nrRecomandari > 12) nrRecomandari = 12;
                 var pictures = new List<Pictures>();

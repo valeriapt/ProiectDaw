@@ -127,17 +127,19 @@ namespace proiectDaw.Controllers
 			else ViewBag.CanEdit = false;
 
             ViewBag.Liked = false;
+            ViewBag.GivenRating = 0;
             likes.ForEach(l =>
             {
                 if (l.UserId == userid)
                 {
                     ViewBag.Liked = true;
                     ViewBag.LikeId = l.Id;
+                    ViewBag.GivenRating = l.Rating;
 
                 }
 
             });
-            
+
             ViewBag.Userid = userid;
 			ViewBag.Picture = picModel;
             ViewBag.Category = picModel.Categories;

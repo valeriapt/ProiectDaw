@@ -6,213 +6,156 @@
 
 
 
-@*<div>
-
-
-        <dl class="dl-horizontal">
-
-
-            <dd>
-                <img src="@Url.Content(Model.ImagePath)" width="600" height="600" />
-            </dd>
-
-            <dt>
-                Category
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Category.Name)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Description)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Description)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Album.Name)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Album.Name)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Date)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Date)
-            </dd>
-
-
-            ededcdcdc
-        </dl>
-    </div>*@
-
-
-
 <main class="main-content">
     <div class="container-fluid photos">
 
-
-        <div class="well">
-            <div class="media">
-                @*<a class="pull-left" href="#">
+        
+            <div class="well">
+                <div class="media">
+                    @*<a class="pull-left" href="#">
                     <img class="media-object" src="http://placekitten.com/150/150">
                 </a>*@
-                <h2 class="media-heading">@Html.DisplayFor(model => model.Name)</h2>
-                <p class="text-right"> @Html.DisplayFor(model => model.Date)</p>
-                <figure class="mb-5" data-aos="fade-up">
-                    <img src="@Url.Content(Model.ImagePath)" alt="Image" class="img-fluid" style=" width:100%;  height:100% ">
-                </figure>
-                <div class="media-body">
+                    <h2 class="media-heading">@Html.DisplayFor(model => model.Name)</h2>
+                    <p class="text-right"> @Html.DisplayFor(model => model.Date)</p>
+                    <figure class="mb-5" data-aos="fade-up">
+                        <img src="@Url.Content(Model.ImagePath)" alt="Image" class="img-fluid" style=" width:100%;  height:100% ">
+                    </figure>
+                    <div class="media-body">
 
 
 
-                    <p>
-                        @Html.DisplayFor(model => model.Description)
-                    </p>
-                    <ul class="list-inline list-unstyled">
-                        <li><span><i class="glyphicon glyphicon-calendar"></i> Category: @Html.DisplayFor(model => model.Category.Name)</span></li>
-                        <li>|</li>
-                        <span><i class="glyphicon  glyphicon -folder-open"></i> Album: @Html.DisplayFor(model => model.Album.Name)</span>
-                        <li>|</li>
-                        <li>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                        </li>
-                        <li>|</li>
-                        <li>
-                            <!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->
-                            <span><i class="fa fa-facebook-square"></i></span>
-                            <span><i class="fa fa-twitter-square"></i></span>
-                            <span><i class="fa fa-google-plus-square"></i></span>
-                        </li>
-                    </ul>
+                        <p>
+                            @Html.DisplayFor(model => model.Description)
+                        </p>
+                        <ul class="list-inline list-unstyled">
+                            <li><span><i class="glyphicon glyphicon-calendar"></i> Category: @Html.DisplayFor(model => model.Category.Name)</span></li>
+                            <li>|</li>
+                            <span><i class="glyphicon  glyphicon -folder-open"></i> Album: @Html.DisplayFor(model => model.Album.Name)</span>
 
-                    <div class=" input-group">
 
-                        @if (ViewBag.Liked == false && ViewBag.CanEdit == false)
+                        </ul>
+                        @if (ViewBag.CanEdit == false && ViewBag.Liked == false)
                         {
-                            <form method="post" action="/Like/New/@Model.Id">
-
-                                <input type="hidden" name="photoId" id="photoId" value=@Model.Id> </input>
-                                <input type="number" name="Rating" id="Rating"> </input>
-                                <button class="btn btn-sm btn-success" type="submit">Add Rating</button>
-                            </form>
-                        }
-
-                        @if (ViewBag.Liked == true && ViewBag.CanEdit == false)
-                        {
-                            <form method="post" action="/Like/Delete/@ViewBag.LikeId">
-                                @Html.HttpMethodOverride(HttpVerbs.Delete)
-                                <button class="btn btn-sm btn-success " type="submit">Unlike</button>
-                            </form>
-                        }
-                        @if (ViewBag.CanEdit == true)
-                        {
-                            <div class="input-group " role="group" aria-label="...">
-
-                                <form method="post" action="/Picture/Edit/@Model.Id">
-                                    <button class="btn btn-sm btn-success linie" type="submit">
-                                        Edit
-                                    </button>
-                                </form>
-                                <form method="post" action="/Picture/Delete/@Model.Id">
-                                    @Html.HttpMethodOverride(HttpVerbs.Delete)
-                                    <button class="btn btn-sm btn-success linie " type="submit">
-                                        Delete
-                                    </button>
-                                </form>
+                            <div onmouseout="CRateSelected()" onreset="">
+                                <span class="starFade" id="Rate1" onclick="CRate(1)" onmouseover="CRateOver(1)" onmouseout="CRateOut(1)"></span>
+                                <span class="starFade" id="Rate2" onclick="CRate(2)" onmouseover="CRateOver(2)" onmouseout="CRateOut(2)"></span>
+                                <span class="starFade" id="Rate3" onclick="CRate(3)" onmouseover="CRateOver(3)" onmouseout="CRateOut(3)"></span>
+                                <span class="starFade" id="Rate4" onclick="CRate(4)" onmouseover="CRateOver(4)" onmouseout="CRateOut(4)"></span>
+                                <span class="starFade" id="Rate5" onclick="CRate(5)" onmouseover="CRateOver(5)" onmouseout="CRateOut(5)"></span>
                             </div>
+
                         }
-                    </div>
 
-                    
-
-                </div>
-
-
-            </div>
-        </div>
-
-
-        @if (TempData.ContainsKey("message"))
-        {
-            <h3 class="alert alert-info" role="alert">@ViewBag.message</h3>
-        }
-        <div class="row" data-aos="fade-up">
-            <h3 class="text-white mb-4" data-aos="fade-up">Comments:</h3>
-        </div>
-
-        @foreach (proiectDaw.Models.Comments item in ViewBag.Comments)
-        {
-            <div class="row">
-
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        @item.CreatedBy
-                        <span class="label label-success float-right"> @item.CreatedAt </span>
-                     </div>
-                    <div class="panel-body">
-                        <strong>@item.Text</strong>
-                        @if (item.userId == ViewBag.Userid || ViewBag.IsAdmin == true)
+                        @if (ViewBag.CanEdit == false && ViewBag.Liked == true)
                         {
-
-                            <form method="post" action="/Comments/Delete/@item.Id">
-
-                                @Html.HttpMethodOverride(HttpVerbs.Delete)
-                                <button class="btn btn-sm btn-success linie" type="submit">Delete comment</button>
-
-
-                            </form>
-
-                            <a class="btn btn-sm btn-success linie" href="/Comments/Edit/@item.Id">Modify comment</a>
-
+                            <div onmouseout="CRateSelected()" onreset="">
+                                <span id="Rate1"></span>
+                                <span id="Rate2"></span>
+                                <span id="Rate3"></span>
+                                <span id="Rate4"></span>
+                                <span id="Rate5"></span>
+                            </div>
 
                         }
+                        <div class=" input-group">
+
+                            @if (ViewBag.Liked == false && ViewBag.CanEdit == false)
+                            {
+                                <form method="post" action="/Like/New/@Model.Id">
+
+                                    <input type="hidden" name="photoId" id="photoId" value=@Model.Id> </input>
+                                    <input type="hidden" name="Rating" id="Rating"> </input>
+                                    <button class="btn btn-sm btn-success" type="submit">Add Rating</button>
+                                </form>
+                            }
+
+
+                            @if (ViewBag.CanEdit == true)
+                            {
+                                <div class="input-group " role="group" aria-label="...">
+
+                                    <form method="post" action="/Picture/Edit/@Model.Id">
+                                        <button class="btn btn-sm btn-success linie" type="submit">
+                                            Edit
+                                        </button>
+                                    </form>
+                                    <form method="post" action="/Picture/Delete/@Model.Id">
+                                        @Html.HttpMethodOverride(HttpVerbs.Delete)
+                                        <button class="btn btn-sm btn-success linie " type="submit">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            }
+                        </div>
+
+
+
                     </div>
-                
+
+
+                </div>
+            </div>
+
+
+            @if (TempData.ContainsKey("message"))
+            {
+                <h3 class="alert alert-info" role="alert">@ViewBag.message</h3>
+            }
+            <div class="row" data-aos="fade-up">
+                <h3 class="text-white mb-4" data-aos="fade-up">Comments:</h3>
+            </div>
+
+            @foreach (proiectDaw.Models.Comments item in ViewBag.Comments)
+            {
+                <div class="row">
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            @item.CreatedBy
+                            <span class="label label-success float-right"> @item.CreatedAt </span>
+                        </div>
+                        <div class="panel-body">
+                            <strong>@item.Text</strong>
+                            @if (item.userId == ViewBag.Userid || ViewBag.IsAdmin == true)
+                            {
+
+                                <form method="post" action="/Comments/Delete/@item.Id">
+
+                                    @Html.HttpMethodOverride(HttpVerbs.Delete)
+                                    <button class="btn btn-sm btn-success linie" type="submit">Delete comment</button>
+
+
+                                </form>
+
+                                <a class="btn btn-sm btn-success linie" href="/Comments/Edit/@item.Id">Modify comment</a>
+
+
+                            }
+                        </div>
+
+                    </div>
+
+
                 </div>
 
-                            
-             </div>
-             
-        }
+            }
 
-        <form method="post" action="/Comments/New/@Model.Id">
-            @Html.TextBox("Text", null)
-            <span class="field-validation-valid text-danger"
-                  data-valmsg-for="Text"
-                  data-valmsg-replace="true">
-            </span>
-            <input type="hidden" name="photoId" id="photoId" value=@Model.Id> </input>
-            <button class="btn btn-sm btn-success" type="submit">Add Comment</button>
-        </form>
-
-
-        <div class="row justify-content-center">
-            <div class="col-md-6 pt-4">
-               
-
-               
-
-               
+            <form method="post" action="/Comments/New/@Model.Id">
+                @Html.TextBox("Text", null)
+                <span class="field-validation-valid text-danger"
+                      data-valmsg-for="Text"
+                      data-valmsg-replace="true">
+                </span>
+                <input type="hidden" name="photoId" id="photoId" value=@Model.Id> </input>
+                <button class="btn btn-sm btn-success" type="submit">Add Comment</button>
+            </form>
 
 
 
-            </div>
-        </div>
 
-
+ 
     </div>
 </main>
 
@@ -221,3 +164,59 @@
 
 
 <!-- TODO: comments in the same page-->
+<script>
+
+	//$(document).ready(function () {
+	window.onload = function () {
+		for (var i = 1; i <= parseInt(@ViewBag.GivenRating); i++) {
+				$("#Rate" + i).attr('class', 'starGlow');
+		}
+		// unselect remaining
+		for (var i = parseInt(@ViewBag.GivenRating) + 1; i <= 5; i++) {
+			$("#Rate" + i).attr('class', 'starFade');
+		}
+	}
+
+
+
+
+	function CRate(r) {
+		$("#Rating").val(r);
+		for (var i = 1; i <= r; i++) {
+			$("#Rate" + i).attr('class', 'starGlow');
+		}
+		// unselect remaining
+		for (var i = r + 1; i <= 5; i++) {
+			$("#Rate" + i).attr('class', 'starFade');
+		}
+	}
+
+	function CRateOver(r) {
+			for (var i = 1; i <= r; i++) {
+				$("#Rate" + i).attr('class', 'starGlow');
+			}
+	}
+
+	function CRateOut(r) {
+		//for (var i = 1; i <= r; i++) {
+		//	$("#Rate" + i).attr('class', 'starFade');
+		//}
+
+		for (var i = 1; i <= parseInt(@ViewBag.GivenRating); i++) {
+				$("#Rate" + i).attr('class', 'starGlow');
+		}
+		// unselect remaining
+		for (var i = parseInt(@ViewBag.GivenRating) + 1; i <= 5; i++) {
+			$("#Rate" + i).attr('class', 'starFade');
+		}
+
+
+	}
+
+	function CRateSelected() {
+		var setRating = $("#Rating").val();
+		for (var i = 1; i <= setRating; i++) {
+			$("#Rate" + i).attr('class', 'starGlow');
+		}
+	}
+</script>

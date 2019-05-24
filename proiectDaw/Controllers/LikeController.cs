@@ -26,7 +26,7 @@ namespace proiectDaw.Controllers
                 like.PhotoId = (int)photoId;
                 db.Likes.Add(like);
                 db.SaveChanges();
-                TempData["message"] = "Picture liked";
+                TempData["message"] = "Rating added!";
                 return RedirectToAction("Show", "Picture", new { id = photoId });
             }
             catch (Exception e)

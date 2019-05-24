@@ -1,17 +1,16 @@
 ﻿@model proiectDaw.Models.Comments
 @{
-	ViewBag.Title = "Editare comentariu";
+	ViewBag.Title = "Edit comment:";
 }
 
 <h2>@ViewBag.Title</h2>
 <form method="post" action="/Comments/Edit/@Model.Id">
 	@Html.HttpMethodOverride(HttpVerbs.Put)
-	<br />
-	@Html.Label("Text", "Modifica Comentariu")
-	<br />
+	<br/>
 	@Html.EditorFor(m => m.Text    )
 	@Html.ValidationMessageFor(model => model.Text, null, new { @class = "text-danger " })
-	<br />
-	<button class="btn btn-sm btn-success" type="submit">Modifica aceast comentariu</button>
+	<br/>
+	<br/>
+	<button class="btn btn-sm btn-success" type="submit">Save changes</button>
 </form>
 
