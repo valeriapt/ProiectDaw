@@ -1,119 +1,148 @@
 ﻿@model proiectDaw.Models.Pictures
 
 @{
-	ViewBag.Title = "Show";
+    ViewBag.Title = "Show";
 }
 
-<h2>@Html.DisplayFor(model => model.Name)</h2>
+
 
 @*<div>
 
-	
-	<dl class="dl-horizontal">
+
+        <dl class="dl-horizontal">
 
 
-		<dd>
-			<img src="@Url.Content(Model.ImagePath)" width="600" height="600" />
-		</dd>
+            <dd>
+                <img src="@Url.Content(Model.ImagePath)" width="600" height="600" />
+            </dd>
 
-		<dt>
-			Category
-		</dt>
+            <dt>
+                Category
+            </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.Category.Name)
-		</dd>
+            <dd>
+                @Html.DisplayFor(model => model.Category.Name)
+            </dd>
 
-		<dt>
-			@Html.DisplayNameFor(model => model.Description)
-		</dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.Description)
-		</dd>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-		<dt>
-			@Html.DisplayNameFor(model => model.Album.Name)
-		</dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Album.Name)
+            </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.Album.Name)
-		</dd>
+            <dd>
+                @Html.DisplayFor(model => model.Album.Name)
+            </dd>
 
-		<dt>
-			@Html.DisplayNameFor(model => model.Date)
-		</dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.Date)
-		</dd>
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
 
 
-        ededcdcdc
-	</dl>
-</div>*@
+            ededcdcdc
+        </dl>
+    </div>*@
+
+
 
 <main class="main-content">
     <div class="container-fluid photos">
 
-        <div class="row justify-content-center">
-            <div class="col-md-6 pt-4">
+
+        <div class="well">
+            <div class="media">
+                @*<a class="pull-left" href="#">
+                    <img class="media-object" src="http://placekitten.com/150/150">
+                </a>*@
+                <h2 class="media-heading">@Html.DisplayFor(model => model.Name)</h2>
+                <p class="text-right"> @Html.DisplayFor(model => model.Date)</p>
                 <figure class="mb-5" data-aos="fade-up">
                     <img src="@Url.Content(Model.ImagePath)" alt="Image" class="img-fluid" style=" width:100%;  height:100% ">
                 </figure>
-                
-				<div class=" input-group">
+                <div class="media-body">
 
-					@if (ViewBag.Liked == false && ViewBag.CanEdit == false)
-					{
-						<form method="post" action="/Like/New/@Model.Id">
-						
-							<input type="hidden" name="photoId" id="photoId" value=@Model.Id> </input>
-							<input type="number" name="Rating" id="Rating"> </input>
-							<button class="btn btn-sm btn-success" type="submit">Add Rating</button>
-						</form>
-					}
 
-					@if (ViewBag.Liked == true && ViewBag.CanEdit == false)
-					{
-						<form method="post" action="/Like/Delete/@ViewBag.LikeId">
-							@Html.HttpMethodOverride(HttpVerbs.Delete)
-							<button class="btn btn-sm btn-success " type="submit">Unlike</button>
-						</form>
-					}
-					@if (ViewBag.CanEdit == true)
-					{
-						<div class="input-group " role="group" aria-label="...">
-							<form method="post" action="/Picture/Edit/@Model.Id">
-								<button class=" btn btn-sm btn-success " type="submit">Edit</button>
 
-							</form>
-							<form method="post" action="/Picture/Delete/@Model.Id">
-								@Html.HttpMethodOverride(HttpVerbs.Delete)
-								<button class=" btn btn-sm btn-success " type="submit">Delete</button>
+                    <p>
+                        @Html.DisplayFor(model => model.Description)
+                    </p>
+                    <ul class="list-inline list-unstyled">
+                        <li><span><i class="glyphicon glyphicon-calendar"></i> Category: @Html.DisplayFor(model => model.Category.Name)</span></li>
+                        <li>|</li>
+                        <span><i class="glyphicon  glyphicon -folder-open"></i> Album: @Html.DisplayFor(model => model.Album.Name)</span>
+                        <li>|</li>
+                        <li>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                        </li>
+                        <li>|</li>
+                        <li>
+                            <!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->
+                            <span><i class="fa fa-facebook-square"></i></span>
+                            <span><i class="fa fa-twitter-square"></i></span>
+                            <span><i class="fa fa-google-plus-square"></i></span>
+                        </li>
+                    </ul>
 
-							</form>
-						</div>
-					}
-				</div>
+                    <div class=" input-group">
+
+                        @if (ViewBag.Liked == false && ViewBag.CanEdit == false)
+                        {
+                            <form method="post" action="/Like/New/@Model.Id">
+
+                                <input type="hidden" name="photoId" id="photoId" value=@Model.Id> </input>
+                                <input type="number" name="Rating" id="Rating"> </input>
+                                <button class="btn btn-sm btn-success" type="submit">Add Rating</button>
+                            </form>
+                        }
+
+                        @if (ViewBag.Liked == true && ViewBag.CanEdit == false)
+                        {
+                            <form method="post" action="/Like/Delete/@ViewBag.LikeId">
+                                @Html.HttpMethodOverride(HttpVerbs.Delete)
+                                <button class="btn btn-sm btn-success " type="submit">Unlike</button>
+                            </form>
+                        }
+                        @if (ViewBag.CanEdit == true)
+                        {
+                            <div class="input-group " role="group" aria-label="...">
+
+                                <form method="post" action="/Picture/Edit/@Model.Id">
+                                    <button class="btn btn-sm btn-success linie" type="submit">
+                                        Edit
+                                    </button>
+                                </form>
+                                <form method="post" action="/Picture/Delete/@Model.Id">
+                                    @Html.HttpMethodOverride(HttpVerbs.Delete)
+                                    <button class="btn btn-sm btn-success linie " type="submit">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                        }
+                    </div>
+
                     
-                <div class="row" data-aos="fade-up">
-                    <h4 class="text-white mb-4" data-aos="fade-up">Category: @Html.DisplayFor(model => model.Category.Name)</h4>
-                </div>
-                <div class="row" data-aos="fade-up">
-                    <h4 class="text-white mb-4" data-aos="fade-up">@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</h4>
-                </div>
-                <div class="row" data-aos="fade-up">
-                    <h4 class="text-white mb-4" data-aos="fade-up">@Html.DisplayNameFor(model => model.Album.Name): @Html.DisplayFor(model => model.Album.Name)</h4>
-                </div>
-                <div class="row" data-aos="fade-up">
-                    <h4 class="text-white mb-4" data-aos="fade-up">@Html.DisplayNameFor(model => model.Date): @Html.DisplayFor(model => model.Date)</h4>
-                </div>
 
+                </div>
 
 
             </div>
         </div>
+
 
         @if (TempData.ContainsKey("message"))
         {
@@ -131,28 +160,32 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         @item.CreatedBy
-                        <span class="label label-success"> @item.CreatedAt </span>
+                        <span class="label label-success float-right"> @item.CreatedAt </span>
+                     </div>
+                    <div class="panel-body">
+                        <strong>@item.Text</strong>
                         @if (item.userId == ViewBag.Userid || ViewBag.IsAdmin == true)
                         {
 
                             <form method="post" action="/Comments/Delete/@item.Id">
+
                                 @Html.HttpMethodOverride(HttpVerbs.Delete)
-                                <button class="btn btn-sm btn-danger" type="submit">Delete comment</button>
+                                <button class="btn btn-sm btn-success linie" type="submit">Delete comment</button>
+
+
                             </form>
-                            <a class="btn btn-sm btn-info" href="/Comments/Edit/@item.Id">Modify comment</a>
+
+                            <a class="btn btn-sm btn-success linie" href="/Comments/Edit/@item.Id">Modify comment</a>
+
+
                         }
                     </div>
-
-                    <div class="panel-body">
-                        <strong>@item.Text</strong>
-                        <br />
-
-                        <br />
-                    </div>
+                
                 </div>
-                <br />
 
-            </div>
+                            
+             </div>
+             
         }
 
         <form method="post" action="/Comments/New/@Model.Id">
@@ -164,6 +197,22 @@
             <input type="hidden" name="photoId" id="photoId" value=@Model.Id> </input>
             <button class="btn btn-sm btn-success" type="submit">Add Comment</button>
         </form>
+
+
+        <div class="row justify-content-center">
+            <div class="col-md-6 pt-4">
+               
+
+               
+
+               
+
+
+
+            </div>
+        </div>
+
+
     </div>
 </main>
 

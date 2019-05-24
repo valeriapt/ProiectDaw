@@ -1153,4 +1153,14 @@ span.tags {
     padding: 2px 4px;
 }
 
+/*---------------SHOW IMAGE----------*/
+.linie{
+    display: inline-block;
+    float:right;
+   
+}
 
+.linie-stanga {
+    display: inline-block;
+    float: left;
+}
